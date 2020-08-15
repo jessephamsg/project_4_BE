@@ -13,8 +13,9 @@ const ParentSchema = new Schema({
     password: {
       type: String,
     },
-    kids_id: [{
-        kid_id: String
+    kidsID: [{
+        kidID: { type: String, required: true },
+        kidName: { type: String, required: true },
     }],
     timestamps: true
   });
