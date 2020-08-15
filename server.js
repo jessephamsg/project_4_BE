@@ -1,15 +1,16 @@
 // Dependencies
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
+const db = require('./db');
 
 // Routes
 app.get('/', ( req, res )=>{
-//   console.log(`Get request from /, sent response.`);
-//   console.log(req.params);
-//   console.log(req.query);
   res.send('Project 4 BE');
 });
+
+// Database
+db.connect(); 
 
 // App Listen at the last
 app.listen(PORT, ()=> {
