@@ -27,4 +27,14 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('createOneKid', err));
         }
     },
+    async updateOneKid(kidID, kidData) {
+        try {
+            const result = await Kids.findByIdAndUpdate(kidID, {
+                $set: kidData
+            });
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('updateOneKid', err));
+        }
+    },
 }

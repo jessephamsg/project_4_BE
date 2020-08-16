@@ -37,4 +37,29 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+    async updateOneKid(req, res) {
+        const kidID = req.params.idx;
+        try {
+            const {
+                kidName,
+                kidIcon,
+                kidMaxScreenTime,
+                kidIsEmailNotif,
+                kidBDay,
+                kidAge
+            } = req.body;
+
+            await kidServices.updateOneKid(kidID, {
+                kidName,
+                kidIcon,
+                kidMaxScreenTime,
+                kidIsEmailNotif,
+                kidBDay,
+                kidAge
+            })
+            responseFormatter.responseOK(req, res, 'One Kid successfully updated!');
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
 }

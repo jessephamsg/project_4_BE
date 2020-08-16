@@ -9,4 +9,8 @@ module.exports = {
         const kid = await kidRepositories.createOneKid(newKid);
         return kid;
     },
+    async updateOneKid(kidID, kidData) {
+        const kid = await kidRepositories.updateOneKid(kidID, kidData);
+        return kid;
+    },
 }
