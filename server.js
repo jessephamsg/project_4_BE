@@ -3,9 +3,11 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 4000;
 const router = require('./routes/routes');
+const bodyParser = require('body-parser');
 const db = require('./db');
 // const ParentsController = require('./controllers/ParentsController');
 
+<<<<<<< HEAD
 // const user= []
 
 // app.set('view-engine', 'ejs')
@@ -47,6 +49,11 @@ const db = require('./db');
 //     )
 //   }
 // })
+=======
+// Middlewares
+app.use(bodyParser.json());
+
+>>>>>>> c0f9742e92f7ef1a40407e4f4a996ac849c93b05
 // Routes
 app.use(router);
 
