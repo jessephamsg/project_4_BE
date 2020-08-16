@@ -6,34 +6,64 @@ module.exports = {
     async getByFilter(filter) {
         try {
             const results = await Parents.find(filter);
-            return results
-        } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getByFilter', err))
-        }
-    },
-    async getAll() {
-        try {
-            const results = await Parents.find({});
-            console.log('getAll@repo: ',results);
             return results;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getAll', err));
+            throw new Error(errUtils.buildDBErrMessage('getByFilter', err));
         }
     },
-    async getByID(ParentsID) {
+    async getAllParents() {
+        try {
+            const results = await this.getByFilter({});
+            return results;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('getAllParents', err));
+        }
+    },
+    async getParentByID(ParentsID) {
         try {
             const result = await Parents.findById(ParentsID);
-            return result
+            return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getByID', err));
+            throw new Error(errUtils.buildDBErrMessage('getParentByID', err));
         }
     },
-    async createOne(newParents) {
+    async createOneParent(newParents) {
         try {
             const result = await Parents.create(newParents);
-            return result
+            return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('createOne', err));
+            throw new Error(errUtils.buildDBErrMessage('createOneParent', err));
+        }
+    },
+    async updateOneParent(parentID, parentData) {
+        try {
+            const result = await Parents.findByIdAndUpdate(parentID, parentData);
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('updateOneParent', err));
+        }
+    },
+    async addOneKidtoParent(parentID, kidData) {
+        try {
+            const result = await Parents.findByIdAndUpdate(parentID, {
+                $push: { kidsList: kidData }
+            });
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('addOneKidtoParent', err));
+        }
+    },
+    async updateOneKidofParent(parentID, kidData) {
+        try {
+            const result = await Parents.findOneAndUpdate({
+                "_id" : parentID,
+                "kidsList.kidID" : kidData.kidID
+            }, {
+                $set: { "kidsList.$.kidName": kidData.kidName }
+            });
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('updateOneKidofParent', err));
         }
     },
     async getByUsername(username) {

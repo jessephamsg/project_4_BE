@@ -34,7 +34,7 @@ module.exports = function (passport)  {
         done(null, user.id)
     })
     passport.deserializeUser (async (id, done) => { // id is the serialized user
-         const user = await parentRepositories.getByID(id)
+         const user = await parentRepositories.getParentByID(id)
          console.log(`deserialized with ${user.id}`)
          return done(null, user);
     })
