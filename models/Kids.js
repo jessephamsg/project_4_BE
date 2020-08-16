@@ -41,5 +41,5 @@ const KidsSchema = new Schema({
   timestamps: true
 });
 
-const Kids = mongoose.model('Kids', KidsSchema)
+const Kids = mongoose.model('kids', KidsSchema)
 module.exports = Kids;
