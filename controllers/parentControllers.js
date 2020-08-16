@@ -34,7 +34,27 @@ module.exports = {
             })
             responseFormatter.responseOK(req, res, 'One Parent successfully added!');
         } catch (err) {
-            console.log('err@CreateOneParent@parentController: ',err);
+            console.log('err@createOneParent@parentController: ',err);
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+    async updateOneParent(req, res) {
+        const parentID = req.params.idx;
+        try {
+            const {
+                parentName,
+                parentEmail,
+                parentPassword
+            } = req.body;
+
+            await parentServices.updateOneParent(parentID, {
+                parentName: parentName,
+                parentEmail: parentEmail,
+                parentPassword: parentPassword
+            })
+            responseFormatter.responseOK(req, res, 'One Parent successfully updated!');
+        } catch (err) {
+            console.log('err@updateOneParent@parentController: ',err);
             responseFormatter.responseErr(req, res, err);
         }
     }
