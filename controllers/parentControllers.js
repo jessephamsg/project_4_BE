@@ -3,7 +3,9 @@ const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
     async getAllParents(req, res) {
+        console.log('req@controller: ',req);
         const results = await parentServices.getAllParents();
+        console.log('result@controller: ',results);
         try {
             responseFormatter.responseOK(req, res, results);
         } catch (err) {
