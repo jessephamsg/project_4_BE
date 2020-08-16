@@ -1,5 +1,6 @@
 const Parents = require('../models/Parents');
 const errUtils = require('./utils/error');
+const parentServices = require('../services/parentServices');
 
 module.exports = {
     async getByFilter(filter) {
@@ -63,6 +64,17 @@ module.exports = {
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('updateOneKidofParent', err));
+        }
+    },
+    async getByUsername(username) {
+        try {
+            const result = await Parents.findOne({ parentName: username});
+            if (!result) {
+                throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
+            }
+            return result
+        } catch(err) {
+            throw new Error(errUtils.buildDBErrMessage('getByUsername', err));
         }
     }
 }
