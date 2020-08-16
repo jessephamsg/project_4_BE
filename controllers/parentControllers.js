@@ -34,7 +34,6 @@ module.exports = {
             })
             responseFormatter.responseOK(req, res, 'One Parent successfully added!');
         } catch (err) {
-            console.log('err@createOneParent@parentController: ',err);
             responseFormatter.responseErr(req, res, err);
         }
     },
@@ -54,7 +53,6 @@ module.exports = {
             })
             responseFormatter.responseOK(req, res, 'One Parent successfully updated!');
         } catch (err) {
-            console.log('err@updateOneParent@parentController: ',err);
             responseFormatter.responseErr(req, res, err);
         }
     },
@@ -72,7 +70,24 @@ module.exports = {
             })
             responseFormatter.responseOK(req, res, 'Kid of Parent successfully added!');
         } catch (err) {
-            console.log('err@addOneKidtoParent@parentController: ',err);
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+    async updateOneKidofParent(req, res) {
+        const parentID = req.params.idx;
+        const kidID = req.params.kidx;
+        try {
+            const {
+                kidName,
+            } = req.body;
+
+            await parentServices.updateOneKidofParent(parentID, {
+                kidID: kidID,
+                kidName: kidName
+            })
+            responseFormatter.responseOK(req, res, 'Kid of Parent successfully updated!');
+        } catch (err) {
+            console.log('err@updateOneKidofParent@parentController: ',err);
             responseFormatter.responseErr(req, res, err);
         }
     }

@@ -18,8 +18,11 @@ module.exports = {
         return parent;
     },
     async addOneKidtoParent(parentID, kidData) {
-        // console.log('kidData@parentService: ', kidData);
         const parent = await parentRepositories.addOneKidtoParent(parentID, kidData);
+        return parent;
+    },
+    async updateOneKidofParent(parentID, kidData) {
+        const parent = await parentRepositories.updateOneKidofParent(parentID, kidData);
         return parent;
     },
 }
