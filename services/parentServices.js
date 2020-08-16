@@ -13,4 +13,8 @@ module.exports = {
         const parent = await parentRepositories.createOne(newParent);
         return parent;
     },
+    async getParentByUsername(username) {
+        const parent = await parentRepositories.getByUsername(username)
+        return parent;
+    }
 }
