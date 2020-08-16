@@ -2,9 +2,11 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 4000;
+const router = require('./routes/routes');
 const db = require('./db');
 const ParentsController = require('./controllers/ParentsController');
 
+<<<<<<< HEAD
 const user= []
 
 // app.set('view-engine', 'ejs')
@@ -46,9 +48,13 @@ const user= []
 //     )
 //   }
 // })
+=======
+// Routes
+app.use(router);
+>>>>>>> 3f3e484ae64c2e71122962cdf501a6f6c2e64ea4
 
 // Database
-db.connect(); 
+db.connect();
 
 // App Listen at the last
 app.listen(PORT, ()=> {

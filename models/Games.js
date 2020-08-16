@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const GameSchema = new Schema({
-    GameName: {
+const GamesSchema = new Schema({
+    GamesName: {
         type: String,
         required: true
     },
-    GameIcon: {
+    GamesIcon: {
         type: String,
         required: true
     },
-    GameCategory: {
+    GamesCategory: {
         type: String,
         required: true
     },
-    GameLevel: [{
+    GamesLevel: [{
         levelNum: { type: Num },
         levelDifficulty: { type: String },
         levelDesc: { type: String },
@@ -26,5 +26,5 @@ const GameSchema = new Schema({
     timestamps: true
 });
 
-const Game = mongoose.model('Game', GameSchema)
-module.exports = Game;
+const Games = mongoose.model('Games', GamesSchema)
+module.exports = Games;
