@@ -28,9 +28,9 @@ module.exports = {
             } = req.body;
 
             await parentServices.createOneParent({
-                parentName: parentName,
-                parentEmail: parentEmail,
-                parentPassword: parentPassword
+                parentName,
+                parentEmail,
+                parentPassword
             })
             responseFormatter.responseOK(req, res, 'One Parent successfully added!');
         } catch (err) {
@@ -47,9 +47,9 @@ module.exports = {
             } = req.body;
 
             await parentServices.updateOneParent(parentID, {
-                parentName: parentName,
-                parentEmail: parentEmail,
-                parentPassword: parentPassword
+                parentName,
+                parentEmail,
+                parentPassword
             })
             responseFormatter.responseOK(req, res, 'One Parent successfully updated!');
         } catch (err) {
@@ -65,8 +65,8 @@ module.exports = {
             } = req.body;
 
             await parentServices.addOneKidtoParent(parentID, {
-                kidID: kidID,
-                kidName: kidName
+                kidID,
+                kidName,
             })
             responseFormatter.responseOK(req, res, 'Kid of Parent successfully added!');
         } catch (err) {
@@ -82,8 +82,8 @@ module.exports = {
             } = req.body;
 
             await parentServices.updateOneKidofParent(parentID, {
-                kidID: kidID,
-                kidName: kidName
+                kidID,
+                kidName,
             })
             responseFormatter.responseOK(req, res, 'Kid of Parent successfully updated!');
         } catch (err) {
