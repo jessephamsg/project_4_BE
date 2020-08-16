@@ -13,4 +13,8 @@ module.exports = {
         const kid = await kidRepositories.updateOneKid(kidID, kidData);
         return kid;
     },
+    async kidRecGameAtStart(kidID, gameStartData) {
+        const kid = await kidRepositories.kidRecGameAtStart(kidID, gameStartData);
+        return kid;
+    },
 }

@@ -37,4 +37,14 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('updateOneKid', err));
         }
     },
+    async kidRecGameAtStart(kidID, gameStartData) {
+        try {
+            const result = await Kids.findByIdAndUpdate(kidID, {
+                $push: { gameHistory: gameStartData }
+            });
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('kidRecGameAtStart', err));
+        }
+    },
 }

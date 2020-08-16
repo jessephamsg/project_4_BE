@@ -62,4 +62,25 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+    async kidRecGameAtStart(req, res) {
+        const kidID = req.params.idx;
+        try {
+            const {
+                gameID,
+                gameName,
+                gameLevel,
+                timeStartPlay,
+            } = req.body;
+
+            await kidServices.kidRecGameAtStart(kidID, {
+                gameID,
+                gameName,
+                gameLevel,
+                timeStartPlay,
+            })
+            responseFormatter.responseOK(req, res, 'kidRecGameAtStart successfully added!');
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
 }
