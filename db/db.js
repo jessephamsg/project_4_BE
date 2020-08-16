@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGO_SERVER = process.env.MONGO_SERVER || 'mongodb+srv://proj4:1odHcEMJjz7JVOPc@project4.ksmb1.gcp.mongodb.net/test';
+const MONGO_SERVER = process.env.MONGO_SERVER || 'mongodb+srv://proj4:1odHcEMJjz7JVOPc@project4.ksmb1.gcp.mongodb.net/proj4?retryWrites=true&w=majority';
 
 module.exports = {
     async connect() {

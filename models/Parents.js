@@ -1,24 +1,28 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema; 
+const Schema = mongoose.Schema;
 
-const ParentSchema = new Schema({
-    name: {
+const ParentsSchema = new Schema(
+  {
+    parentName: {
       type: String,
       required: true
     },
-    email: {
+    parentEmail: {
       type: String,
       required: true
     },
-    password: {
+    parentPassword: {
       type: String,
     },
-    kidsID: [{
-        kidID: { type: String, required: true },
-        kidName: { type: String, required: true },
-    }],
+    kidsList: [{
+      kidID: { type: String, required: true },
+      kidName: { type: String, required: true },
+    }]
+  },
+  {
     timestamps: true
-  });
+  }
+);
 
-const Parent = mongoose.model('Parent', ParentSchema)
-module.exports = Parent;
+const Parents = mongoose.model('parents', ParentsSchema)
+module.exports = Parents;
