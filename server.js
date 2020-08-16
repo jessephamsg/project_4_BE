@@ -8,21 +8,23 @@ const db = require('./db');
 const initializePassport = require('./services/authServices');
 const passport = require('passport');
 const flash = require('express-flash');
-const flash = require('express-session');
+const session = require('express-session');
 
 
 // Middlewares
-initializePassport(passport)
+
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // auth middleware
 app.use(flash())
 app.use(session ({
     secret: process.env.SESSION_SECRET || 'secretly',
-    resave : false, // should we resave session variable if nothing has changed 
-    saveUninitialized : false // should we save empty value in session
+    resave : true, // should we resave session variable if nothing has changed ?
+    saveUninitialized : true // should we save empty value in session ?
 }))
+initializePassport(passport)
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -38,7 +38,7 @@ module.exports = {
     },
     async getByUsername(username) {
         try {
-            const result = await Parents.find({ parentName: username});
+            const result = await Parents.findOne({ parentName: username});
             if (!result) {
                 throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
             }
