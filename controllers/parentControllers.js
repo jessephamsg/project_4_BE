@@ -11,7 +11,7 @@ module.exports = {
         }
     },
     async getParentByID(req, res) {
-        const parentID = req.params.index;
+        const parentID = req.params.idx;
         const result = await parentServices.getParentByID(parentID);
         try {
             responseFormatter.responseOK(req, res, result);
