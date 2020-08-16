@@ -3,18 +3,18 @@ const Schema = mongoose.Schema;
 
 const ParentsSchema = new Schema(
   {
-    name: {
+    parentName: {
       type: String,
       required: true
     },
-    email: {
+    parentEmail: {
       type: String,
       required: true
     },
-    password: {
+    parentPassword: {
       type: String,
     },
-    kidsID: [{
+    kidsList: [{
       kidID: { type: String, required: true },
       kidName: { type: String, required: true },
     }]
