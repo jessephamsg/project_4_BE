@@ -12,8 +12,9 @@ module.exports = {
     },
     async getAll() {
         try {
-            const results = await this.getByFilter({});
-            return results
+            const results = await Parents.find({});
+            console.log('getAll@repo: ',results);
+            return results;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('getAll', err));
         }
