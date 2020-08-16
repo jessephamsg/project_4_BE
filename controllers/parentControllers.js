@@ -7,7 +7,7 @@ module.exports = {
         try {
             responseFormatter.responseOK(req, res, results);
         } catch (err) {
-            responseFormatter.responseNotFound(req, res, results);
+            responseFormatter.responseErr(req, res, err);
         }
     },
     async getParentByID(req, res) {
@@ -16,7 +16,7 @@ module.exports = {
         try {
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
-            responseFormatter.responseNotFound(req, res, result);
+            responseFormatter.responseErr(req, res, err);
         }
     },
     async createOneParent(req, res) {
@@ -26,14 +26,16 @@ module.exports = {
                 parentEmail,
                 parentPassword
             } = req.body;
-            const oneParent = await parentServices.createOneParent({
+
+            await parentServices.createOneParent({
                 parentName: parentName,
                 parentEmail: parentEmail,
                 parentPassword: parentPassword
             })
-            authResponseFormatter.responseOK(res, oneParent, true, 'One Parent successfully added!', null)
+            responseFormatter.responseOK(req, res, 'One Parent successfully added!');
         } catch (err) {
-            authResponseFormatter.responseServerErr(res, null, false, null, err)
+            console.log('err@CreateOneParent@parentController: ',err);
+            responseFormatter.responseErr(req, res, err);
         }
     }
 }

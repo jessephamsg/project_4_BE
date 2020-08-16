@@ -19,7 +19,7 @@ module.exports = {
                 HTTP_RESPONSE_STATUS_CODE.OK)
             .json(buildJSONResponse(req, true, payload))
     },
-    responseNotFound(req, res, payload) {
+    responseErr(req, res, payload) {
         res.status(
                 HTTP_RESPONSE_STATUS_CODE.NOTFOUND)
             .json(buildJSONResponse(req, false, payload))
