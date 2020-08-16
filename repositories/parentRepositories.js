@@ -26,9 +26,9 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getParentByID', err));
         }
     },
-    async createOneParent(newParents) {
+    async createOneParent(newParent) {
         try {
-            const result = await Parents.create(newParents);
+            const result = await Parents.create(newParent);
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('createOneParent', err));
