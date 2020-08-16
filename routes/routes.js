@@ -15,5 +15,6 @@ router.get('/kid/:idx', kidControllers.getKidByID);
 router.post('/kid', kidControllers.createOneKid);
 router.put('/kid/:idx', kidControllers.updateOneKid);
 router.put('/kidRecGameAtStart/:idx', kidControllers.kidRecGameAtStart);
+router.put('/kidRecGameAtStop/:idx/:gidx', kidControllers.kidRecGameAtStop);
 
 module.exports = router;

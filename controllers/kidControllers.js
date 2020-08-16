@@ -83,4 +83,24 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+    async kidRecGameAtStop(req, res) {
+        const kidID = req.params.idx;
+        const gameID = req.params.gidx;
+        try {
+            const {
+                timeStopPlay,
+                currentScore
+            } = req.body;
+
+            await kidServices.kidRecGameAtStop(kidID, {
+                gameID,
+                timeStopPlay,
+                currentScore
+            })
+            responseFormatter.responseOK(req, res, 'kidRecGameAtStop successfully updated!');
+        } catch (err) {
+            console.log('err@kidRecGameAtStop@kidController: ', err);
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
 }

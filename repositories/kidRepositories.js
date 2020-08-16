@@ -47,4 +47,20 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('kidRecGameAtStart', err));
         }
     },
+    async kidRecGameAtStop(kidID, gameStopData) {
+        try {
+            const result = await Kids.findOneAndUpdate({
+                "_id": kidID,
+                "gameHistory.gameID": gameStopData.gameID
+            }, {
+                $set: {
+                    "gameHistory.$.timeStopPlay": gameStopData.timeStopPlay,
+                    "gameHistory.$.currentScore": gameStopData.currentScore
+                }
+            });
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('kidRecGameAtStop', err));
+        }
+    },
 }
