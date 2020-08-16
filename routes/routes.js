@@ -11,6 +11,7 @@ router.put('/parent/:idx', parentControllers.updateOneParent);
 router.put('/parentaddkid/:idx', parentControllers.addOneKidtoParent);
 router.put('/parenteditkid/:idx/:kidx', parentControllers.updateOneKidofParent);
 
+router.get('/kid/:idx', kidControllers.getKidByID);
 router.post('/kid', kidControllers.createOneKid);
 
 module.exports = router;
