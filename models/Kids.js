@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const KidSchema = new Schema({
+const KidsSchema = new Schema({
   parentID: {
     type: String,
     required: true
@@ -41,5 +41,5 @@ const KidSchema = new Schema({
   timestamps: true
 });
 
-const Kid = mongoose.model('Kid', KidSchema)
-module.exports = Kid;
+const Kids = mongoose.model('kids', KidsSchema)
+module.exports = Kids;
