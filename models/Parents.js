@@ -15,9 +15,10 @@ const ParentsSchema = new Schema(
       type: String,
     },
     kidsList: [{
+      _id: false,
       kidID: { type: String, required: true },
       kidName: { type: String, required: true },
-    }]
+    }],
   },
   {
     timestamps: true

@@ -41,5 +41,15 @@ module.exports = {
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('updateOneParent', err));
         }
+    },
+    async addOneKidtoParent(parentID, kidData) {
+        try {
+            const result = await Parents.findByIdAndUpdate(parentID, {
+                $push: { kidsList: kidData }
+            });
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('addOneKidtoParent', err));
+        }
     }
 }

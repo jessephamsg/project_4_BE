@@ -57,5 +57,23 @@ module.exports = {
             console.log('err@updateOneParent@parentController: ',err);
             responseFormatter.responseErr(req, res, err);
         }
+    },
+    async addOneKidtoParent(req, res) {
+        const parentID = req.params.idx;
+        try {
+            const {
+                kidID,
+                kidName,
+            } = req.body;
+
+            await parentServices.addOneKidtoParent(parentID, {
+                kidID: kidID,
+                kidName: kidName
+            })
+            responseFormatter.responseOK(req, res, 'Kid of Parent successfully added!');
+        } catch (err) {
+            console.log('err@addOneKidtoParent@parentController: ',err);
+            responseFormatter.responseErr(req, res, err);
+        }
     }
 }

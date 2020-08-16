@@ -14,8 +14,12 @@ module.exports = {
         return parent;
     },
     async updateOneParent(parentID, parentData) {
-        // console.log('parentData@parentService: ', parentData);
         const parent = await parentRepositories.updateOneParent(parentID, parentData);
+        return parent;
+    },
+    async addOneKidtoParent(parentID, kidData) {
+        // console.log('kidData@parentService: ', kidData);
+        const parent = await parentRepositories.addOneKidtoParent(parentID, kidData);
         return parent;
     },
 }
