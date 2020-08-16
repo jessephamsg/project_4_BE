@@ -2,15 +2,14 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 4000;
+const router = require('./routes/routes');
 const db = require('./db');
 
 // Routes
-app.get('/', ( req, res )=>{
-  res.send('Project 4 BE');
-});
+app.use(router);
 
 // Database
-db.connect(); 
+db.connect();
 
 // App Listen at the last
 app.listen(PORT, ()=> {
