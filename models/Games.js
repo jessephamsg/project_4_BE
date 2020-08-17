@@ -11,18 +11,22 @@ const GamesSchema = new Schema(
             type: String,
             required: true
         },
+        //GameImg
+        //GameDesc
+        //Developer
+        //GameStats: ratings, reviews, numberOfKidsAttempted
         GamesCategory: {
             type: String,
             required: true
         },
-        GamesLevel: [{
-            levelNum: { type: Num },
-            levelDifficulty: { type: String },
+        GamesLevel: [{ //GameSettings 
+            levelNum: { type: Num }, //level
+            levelDifficulty: { type: String }, 
             levelDesc: { type: String },
-            levelIsTimed: { type: Boolean },
-            levelDurationInSecond: { type: Number },
-            levelHighestPossibleScore: { type: Number },
-            levelConfiguration: { type: Object }
+            levelIsTimed: { type: Boolean }, //timed
+            levelDurationInSecond: { type: Number }, //i think no need this
+            levelHighestPossibleScore: { type: Number }, // i think no need this
+            levelConfiguration: { type: Object } // i think no need this
         }],
         GamesLib: [{
             type: Object

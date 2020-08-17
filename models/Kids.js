@@ -15,17 +15,17 @@ const KidsSchema = new Schema(
       type: String,
       required: true
     },
-    kidMaxScreenTime: {
+    kidMaxScreenTime: { 
       type: Number
     },
-    kidIsEmailNotif: {
+    kidIsEmailNotif: { //isEmailNotified
       type: Boolean,
     },
-    kidBDay: {
+    kidBDay: { //DOB
       type: Date,
       required: true
     },
-    kidAge: {
+    kidAge: { 
       type: Number,
       required: true
     },
@@ -33,19 +33,23 @@ const KidsSchema = new Schema(
       _id: false,
       gameID: { type: String, required: true },
       gameName: { type: String, required: true },
+      //gameDetails 
       gameLevel: { type: Object },
-      timesPlayed: { type: Number, required: true },
-      totalMinsPlayed: { type: Number, required: true },
-      highestScore: { type: Number, required: true },
+      timesPlayed: { type: Number, required: true }, //playFreq
+      totalMinsPlayed: { type: Number, required: true }, //playDuration
+      highestScore: { type: Number, required: true }, 
+      //attemptsBeforeSuccess (number) 
+      //numberOfPauses (number)
+      //gamePauseTime (array)
     }],
-    gameHistory: [{
+    gameHistory: [{ //onlyID is required
       _id: false,
       gameID: { type: String, required: true },
-      gameName: { type: String, required: true },
+      gameName: { type: String, required: true }, 
       gameLevel: { type: Object },
-      timeStartPlay: { type: Date, required: true },
-      timeStopPlay: { type: Date },
-      currentScore: { type: Number },
+      timeStartPlay: { type: Date, required: true }, //gameStartTime <-- this should be under Stats
+      timeStopPlay: { type: Date }, //gameEndTime <-- this should be under Stats
+      currentScore: { type: Number }, // <-- this should be under Stats
     }]
   },
   {

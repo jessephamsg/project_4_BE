@@ -1,5 +1,6 @@
 const parentRepositories = require('../repositories/parentRepositories');
 
+//i think can clean this up according to all the parts above
 module.exports = {
     async getAllParents() {
         const allParents = await parentRepositories.getAllParents();

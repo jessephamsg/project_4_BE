@@ -1,6 +1,8 @@
 const kidServices = require('../services/kidServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
+//naming convention: create/update/delete/get + one/many + object + (optional: byID/byEmail/by...)
+
 module.exports = {
     async getKidByID(req, res) {
         const kidID = req.params.idx;
@@ -62,14 +64,14 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async kidRecGameAtStart(req, res) {
+    async kidRecGameAtStart(req, res) { //Tam: I suggest we can rename this to addStartRecord
         const kidID = req.params.idx;
         try {
             const {
-                gameID,
+                gameID, 
                 gameName,
                 gameLevel,
-                timeStartPlay,
+                timeStartPlay, //gameStartTime
             } = req.body;
 
             await kidServices.kidRecGameAtStart(kidID, {
@@ -83,7 +85,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async kidRecGameAtStop(req, res) {
+    async kidRecGameAtStop(req, res) { //addEndRecord
         const kidID = req.params.idx;
         const gameID = req.params.gidx;
         try {
@@ -94,7 +96,7 @@ module.exports = {
 
             await kidServices.kidRecGameAtStop(kidID, {
                 gameID,
-                timeStopPlay,
+                timeStopPlay, //gameEndTime
                 currentScore
             })
             responseFormatter.responseOK(req, res, 'kidRecGameAtStop successfully updated!');

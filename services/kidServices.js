@@ -1,5 +1,6 @@
 const kidRepositories = require('../repositories/kidRepositories');
 
+//i think can clean this up according to all the parts above
 module.exports = {
     async getKidByID(kidID) {
         const kid = await kidRepositories.getKidByID(kidID);
