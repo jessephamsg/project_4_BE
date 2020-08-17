@@ -5,19 +5,18 @@ const passport = require("passport")
 
 module.exports = {
     login (req,res,next) {
-        console.log('req.body' ,req.body)
         passport.authenticate("local", 
             {
                 successRedirect: '/success', // redirecting does not work
                 failureRedirect: '/unsuccess', // redirecting may be done on frontend
-                failureFlash : 'invalid username or password'},
+                failureFlash : 'invalid username or password'
+            },
             (err, user, info) => {
-            console.log('line 15', user)
             if(err) throw err;
-            if(!user) res.status(400).send("no user exists");
+            if(!user) responseformatter.responseErr(req, res, err)
+            //res.status(400).send("no user exists");
             else {
                 req.login(user, (err) => {
-                    console.log('login success with ', user.parentName)
                     if(err) throw err;
                     res.status(201).send(`Successfully AAAAuthenticated with ${req.session.passport.user}`)
                 })

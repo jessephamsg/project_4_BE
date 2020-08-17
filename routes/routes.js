@@ -10,7 +10,7 @@ router.get('/', parentControllers.getAllParents);
 router.get('/parent', parentControllers.getAllParents); //parents
 
 router.get('/parent/:idx', parentControllers.getParentByID); //parents/:idx
-router.post('/parent', parentControllers.createOneParent);//parents/:idx
+router.post('/parent', parentControllers.createOneParent);//parent
 router.put('/parent/:idx', parentControllers.updateOneParent);//parents/:idx
 router.put('/parentaddkid/:idx', parentControllers.addOneKidtoParent);//kids/:idx -- addOneKid -- this is post not put
 router.put('/parenteditkid/:idx/:kidx', parentControllers.updateOneKidofParent);//kids/:idx -- updateOneKid

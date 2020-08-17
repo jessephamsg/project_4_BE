@@ -14,6 +14,7 @@ const GamesSchema = new Schema(
         //GameImg
         //GameDesc
         //Developer
+        //Status: coming soon, published etc 
         //GameStats: ratings, reviews, numberOfKidsAttempted
         GamesCategory: {
             type: String,
@@ -28,12 +29,12 @@ const GamesSchema = new Schema(
             levelHighestPossibleScore: { type: Number }, // i think no need this
             levelConfiguration: { type: Object } // i think no need this
         }],
-        GamesLib: [{
+        GamesLib: [{//gameAssets
             type: Object
         }]
     },
     {
-        timestamps: true
+        timestamps: true// i tink no need
     }
 );
 
