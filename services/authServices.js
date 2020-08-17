@@ -5,9 +5,7 @@ const bcrypt = require("bcrypt")
 
 module.exports = function (passport)  {
     passport.use(
-        new LocalStrategy (
-        { usernameField: 'username',
-         passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
+        new LocalStrategy ({ usernameField: 'username', passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
         async (username, password, done) => {
         console.log(username)
         const user = await parentRepositories.getByUsername(username)
