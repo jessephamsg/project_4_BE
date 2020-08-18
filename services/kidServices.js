@@ -21,4 +21,12 @@ module.exports = {
         const kid = await kidRepositories.kidRecGameAtStop(kidID, gameStopData);
         return kid;
     },
+    async kidAddStatFirstPlayAtStop(kidID, gameStopData) {
+        const kid = await kidRepositories.kidAddStatFirstPlayAtStop(kidID, gameStopData);
+        return kid;
+    },
+    async kidUpdateStatAtStop(kidID, gameStopData) {
+        const kid = await kidRepositories.kidUpdateStatAtStop(kidID, gameStopData);
+        return kid;
+    },
 }

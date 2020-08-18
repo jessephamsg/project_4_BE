@@ -103,4 +103,53 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+    async kidAddStatFirstPlayAtStop(req, res) {
+        const kidID = req.params.idx;
+        try {
+            const {
+                gameID,
+                gameName,
+                gameLevel,
+                timesPlayed,
+                totalMinsPlayed,
+                highestScore
+            } = req.body;
+
+            await kidServices.kidAddStatFirstPlayAtStop(kidID, {
+                gameID,
+                gameName,
+                gameLevel,
+                timesPlayed,
+                totalMinsPlayed,
+                highestScore
+            })
+            responseFormatter.responseOK(req, res, 'kidAddStatFirstPlayAtStop successfully added!');
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+    async kidUpdateStatAtStop(req, res) {
+        const kidID = req.params.idx;
+        const gameID = req.params.gidx;
+        try {
+            const {
+                gameLevel,
+                timesPlayed,
+                totalMinsPlayed,
+                highestScore
+            } = req.body;
+
+            await kidServices.kidUpdateStatAtStop(kidID, {
+                gameID,
+                gameLevel,
+                timesPlayed,
+                totalMinsPlayed,
+                highestScore
+            })
+            responseFormatter.responseOK(req, res, 'kidUpdateStatAtStop successfully updated!');
+        } catch (err) {
+            console.log('err@kidUpdateStatAtStop@kidController: ', err);
+            responseFormatter.responseErr(req, res, err);
+        }
+    }
 }

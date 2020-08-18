@@ -33,10 +33,12 @@ const KidsSchema = new Schema(
       _id: false,
       gameID: { type: String, required: true },
       gameName: { type: String, required: true },
-      gameLevel: { type: Object },
-      timesPlayed: { type: Number, required: true },
-      totalMinsPlayed: { type: Number, required: true },
-      highestScore: { type: Number, required: true },
+      gameDetail: [{
+        gameLevel: { type: Number, required: true },
+        timesPlayed: { type: Number, required: true },
+        totalMinsPlayed: { type: Number, required: true },
+        highestScore: { type: Number, required: true },
+      }],
     }],
     gameHistory: [{
       _id: false,
