@@ -74,13 +74,11 @@ module.exports = {
             const {
                 parentName,
                 parentEmail,
-                parentPassword
             } = req.body;
-            
+
             await parentServices.updateOneParent(parentID, {
                 parentName,
                 parentEmail,
-                parentPassword
             })
             responseFormatter.responseOK(req, res, 'updateOneParent is successful!');
         } catch (err) {
