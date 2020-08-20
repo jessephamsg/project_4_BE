@@ -13,12 +13,16 @@ module.exports = {
         const kid = await kidRepositories.updateOneKid(kidID, kidData);
         return kid;
     },
-    async kidRecGameAtStart(kidID, gameStartData) {
-        const kid = await kidRepositories.kidRecGameAtStart(kidID, gameStartData);
+    async kidStartGame(kidID, gameStartData) {
+        const kid = await kidRepositories.kidStartGame(kidID, gameStartData);
         return kid;
     },
-    async kidRecGameAtStop(kidID, gameStopData) {
-        const kid = await kidRepositories.kidRecGameAtStop(kidID, gameStopData);
+    async kidStopGame(kidID, gameStopData) {
+        const kid = await kidRepositories.kidStopGame(kidID, gameStopData);
+        return kid;
+    },
+    async deleteOneKid(kidID) {
+        const kid = await kidRepositories.deleteOneKid(kidID);
         return kid;
     },
 }

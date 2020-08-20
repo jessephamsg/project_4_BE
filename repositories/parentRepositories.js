@@ -1,6 +1,5 @@
 const Parents = require('../models/Parents');
 const errUtils = require('./utils/error');
-const parentServices = require('../services/parentServices');
 
 module.exports = {
     async getByFilter(filter) {
@@ -27,6 +26,17 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getParentByID', err));
         }
     },
+    async getParentByUsername(username) {
+        try {
+            const result = await Parents.findOne({ parentName: username });
+            if (!result) {
+                throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
+            }
+            return result
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('getParentByUsername', err));
+        }
+    },
     async createOneParent(newParent) {
         try {
             const result = await Parents.create(newParent);
@@ -43,38 +53,27 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('updateOneParent', err));
         }
     },
-    async addOneKidtoParent(parentID, kidData) {
+    async addKidtoParent(parentID, kidData) {
         try {
             const result = await Parents.findByIdAndUpdate(parentID, {
                 $push: { kidsList: kidData }
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('addOneKidtoParent', err));
+            throw new Error(errUtils.buildDBErrMessage('addKidtoParent', err));
         }
     },
-    async updateOneKidofParent(parentID, kidData) {
+    async deleteKidfromParent(parentID, kidID) {
+        
+        console.log("parentID@deleteKidfromParent@parentREpositories", parentID);
+        console.log("kidID@deleteKidfromParent@parentREpositories", kidID);
         try {
-            const result = await Parents.findOneAndUpdate({
-                "_id" : parentID,
-                "kidsList.kidID" : kidData.kidID
-            }, {
-                $set: { "kidsList.$.kidName": kidData.kidName }
+            const result = await Parents.updateOne({ _id: parentID }, {
+                "$pull": { "kidsList": { "kidID": kidID } }
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('updateOneKidofParent', err));
+            throw new Error(errUtils.buildDBErrMessage('deleteKidfromParent', err));
         }
     },
-    async getByUsername(username) {
-        try {
-            const result = await Parents.findOne({ parentName: username});
-            if (!result) {
-                throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
-            }
-            return result
-        } catch(err) {
-            throw new Error(errUtils.buildDBErrMessage('getByUsername', err));
-        }
-    }
 }

@@ -61,9 +61,9 @@ module.exports = {
             await parentServices.createOneParent({
                 parentName,
                 parentEmail,
-                parentPassword
+                parentPassword : hashedPassword,
             })
-            responseFormatter.responseOK(req, res, 'One Parent successfully added!');
+            responseFormatter.responseOK(req, res, 'createOneParent is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
@@ -74,51 +74,54 @@ module.exports = {
             const {
                 parentName,
                 parentEmail,
-                parentPassword
             } = req.body;
 
             await parentServices.updateOneParent(parentID, {
                 parentName,
                 parentEmail,
-                parentPassword
             })
-            responseFormatter.responseOK(req, res, 'One Parent successfully updated!');
+            responseFormatter.responseOK(req, res, 'updateOneParent is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async addOneKidtoParent(req, res) {
+    async changePwdOneParent(req, res) {
+        const parentID = req.params.idx;
+        try {
+            const {
+                parentPassword,
+            } = req.body;
+            const hashedPassword = await bcrypt.hash(parentPassword, 10); // hashed the password
+            await parentServices.updateOneParent(parentID, {
+                parentPassword : hashedPassword,
+            })
+            responseFormatter.responseOK(req, res, 'changePwdOneParent is successful!');
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+    async addKidtoParent(req, res) {
         const parentID = req.params.idx;
         try {
             const {
                 kidID,
-                kidName,
             } = req.body;
 
-            await parentServices.addOneKidtoParent(parentID, {
+            await parentServices.addKidtoParent(parentID, {
                 kidID,
-                kidName,
             })
-            responseFormatter.responseOK(req, res, 'Kid of Parent successfully added!');
+            responseFormatter.responseOK(req, res, 'addKidtoParent is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async updateOneKidofParent(req, res) {
+    async deleteKidfromParent(req, res) {
         const parentID = req.params.idx;
         const kidID = req.params.kidx;
         try {
-            const {
-                kidName,
-            } = req.body;
-
-            await parentServices.updateOneKidofParent(parentID, {
-                kidID,
-                kidName,
-            })
-            responseFormatter.responseOK(req, res, 'Kid of Parent successfully updated!');
+            await parentServices.deleteKidfromParent(parentID, kidID)
+            responseFormatter.responseOK(req, res, 'deleteKidfromParent is successful!');
         } catch (err) {
-            console.log('err@updateOneKidofParent@parentController: ',err);
             responseFormatter.responseErr(req, res, err);
         }
     }

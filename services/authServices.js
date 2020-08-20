@@ -10,7 +10,7 @@ module.exports = function (passport)  {
          passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
         async (username, password, done) => {
         console.log(username)
-        const user = await parentRepositories.getByUsername(username)
+        const user = await parentRepositories.getParentByUsername(username)
         if (!user) {
             return done(null, false, {message : 'No username is found'});
         }
