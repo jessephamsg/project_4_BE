@@ -97,5 +97,13 @@ module.exports = {
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('kidUpdateStatAtStop', err));
         }
-    }
+    },
+    async deleteOneKid(kidID) {
+        try {
+            const result = await Kids.findByIdAndRemove(kidID);
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('deleteOneKid', err));
+        }
+    },
 }

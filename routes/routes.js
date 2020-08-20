@@ -19,7 +19,7 @@ router.post('/kids', kidControllers.createOneKid);
 router.put('/kids/:idx', kidControllers.updateOneKid);
 router.put('/kids/start/:idx/:gidx', kidControllers.kidStartGame);
 router.put('/kids/stop/:idx/:gidx', kidControllers.kidStopGame);
-// router.delete('/kids/:idx', gameControllers.deleteOneKid);
+router.delete('/kids/:idx', kidControllers.deleteOneKid);
 
 router.get('/games/:idx', gameControllers.getGameByID);
 router.post('/games', gameControllers.createOneGame);

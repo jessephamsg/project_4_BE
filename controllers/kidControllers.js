@@ -104,4 +104,13 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+    async deleteOneKid(req, res) {
+        const kidID = req.params.idx;
+        try {
+            await kidServices.deleteOneKid(kidID)
+            responseFormatter.responseOK(req, res, 'deleteOneKid is successful!');
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    }
 }

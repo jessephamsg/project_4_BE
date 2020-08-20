@@ -21,4 +21,8 @@ module.exports = {
         const kid = await kidRepositories.kidStopGame(kidID, gameStopData);
         return kid;
     },
+    async deleteOneKid(kidID) {
+        const kid = await kidRepositories.deleteOneKid(kidID);
+        return kid;
+    },
 }
