@@ -8,7 +8,7 @@ router.get('/parents', parentControllers.getAllParents);
 
 router.get('/parents/:idx', parentControllers.getParentByID);
 router.post('/parents', parentControllers.createOneParent);
-// router.put('/parents/:idx', parentControllers.updateOneParent);
+router.put('/parents/:idx', parentControllers.updateOneParent);
 // router.put('/parents/add/:idx', parentControllers.addKidtoParent);
 // router.put('/parents/del/:idx', parentControllers.deleteKidfromParent);
 

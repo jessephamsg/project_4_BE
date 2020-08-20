@@ -61,7 +61,7 @@ module.exports = {
             await parentServices.createOneParent({
                 parentName,
                 parentEmail,
-                parentPassword
+                parentPassword : hashedPassword,
             })
             responseFormatter.responseOK(req, res, 'createOneParent is successful!');
         } catch (err) {
@@ -76,7 +76,7 @@ module.exports = {
                 parentEmail,
                 parentPassword
             } = req.body;
-
+            
             await parentServices.updateOneParent(parentID, {
                 parentName,
                 parentEmail,
