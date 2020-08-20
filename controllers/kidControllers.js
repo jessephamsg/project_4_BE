@@ -18,7 +18,7 @@ module.exports = {
                 kidName,
                 kidIcon,
                 kidMaxScreenTime,
-                kidIsEmailNotif,
+                isKidEmailNotified,
                 kidBDay,
                 kidAge
             } = req.body;
@@ -28,7 +28,7 @@ module.exports = {
                 kidName,
                 kidIcon,
                 kidMaxScreenTime,
-                kidIsEmailNotif,
+                isKidEmailNotified,
                 kidBDay,
                 kidAge
             })
@@ -62,7 +62,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async kidRecGameAtStart(req, res) {
+    async kidStartGame(req, res) {
         const kidID = req.params.idx;
         try {
             const {
@@ -72,18 +72,18 @@ module.exports = {
                 timeStartPlay,
             } = req.body;
 
-            await kidServices.kidRecGameAtStart(kidID, {
+            await kidServices.kidStartGame(kidID, {
                 gameID,
                 gameName,
                 gameLevel,
                 timeStartPlay,
             })
-            responseFormatter.responseOK(req, res, 'kidRecGameAtStart successfully added!');
+            responseFormatter.responseOK(req, res, 'kidStartGame successfully added!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async kidRecGameAtStop(req, res) {
+    async kidStopGame(req, res) {
         const kidID = req.params.idx;
         const gameID = req.params.gidx;
         try {
@@ -92,14 +92,14 @@ module.exports = {
                 currentScore
             } = req.body;
 
-            await kidServices.kidRecGameAtStop(kidID, {
+            await kidServices.kidStopGame(kidID, {
                 gameID,
                 timeStopPlay,
                 currentScore
             })
-            responseFormatter.responseOK(req, res, 'kidRecGameAtStop successfully updated!');
+            responseFormatter.responseOK(req, res, 'kidStopGame successfully updated!');
         } catch (err) {
-            console.log('err@kidRecGameAtStop@kidController: ', err);
+            console.log('err@kidStopGame@kidController: ', err);
             responseFormatter.responseErr(req, res, err);
         }
     },
