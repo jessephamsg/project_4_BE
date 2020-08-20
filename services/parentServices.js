@@ -13,7 +13,7 @@ module.exports = {
         const parent = await parentRepositories.createOneParent(newParent);
         return parent;
     },
-    async updateOneParent(parentID, parentData) {
+    async updateOneParent(parentID, parentData) { //used by the email and the password controller
         const parent = await parentRepositories.updateOneParent(parentID, parentData);
         return parent;
     },

@@ -85,6 +85,21 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+    async changePwdOneParent(req, res) {
+        const parentID = req.params.idx;
+        try {
+            const {
+                parentPassword,
+            } = req.body;
+            const hashedPassword = await bcrypt.hash(parentPassword, 10); // hashed the password
+            await parentServices.updateOneParent(parentID, {
+                parentPassword : hashedPassword,
+            })
+            responseFormatter.responseOK(req, res, 'changePwdOneParent is successful!');
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
     async addKidtoParent(req, res) {
         const parentID = req.params.idx;
         try {
