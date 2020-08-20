@@ -15,7 +15,7 @@ router.put('/parents/del/:idx/:kidx', parentControllers.deleteKidfromParent);
 
 router.get('/kids/:idx', kidControllers.getKidByID);
 router.post('/kids', kidControllers.createOneKid);
-// router.put('/kids/:idx', kidControllers.updateOneKid);
+router.put('/kids/:idx', kidControllers.updateOneKid);
 // router.put('/kids/start/:idx', kidControllers.kidStartGame);
 // router.put('/kids/stop/:idx/:gidx', kidControllers.kidStopGame);
 

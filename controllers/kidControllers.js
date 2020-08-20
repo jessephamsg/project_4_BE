@@ -44,7 +44,7 @@ module.exports = {
                 kidName,
                 kidIcon,
                 kidMaxScreenTime,
-                kidIsEmailNotif,
+                isKidEmailNotified,
                 kidBDay,
                 kidAge
             } = req.body;
@@ -53,7 +53,7 @@ module.exports = {
                 kidName,
                 kidIcon,
                 kidMaxScreenTime,
-                kidIsEmailNotif,
+                isKidEmailNotified,
                 kidBDay,
                 kidAge
             })
