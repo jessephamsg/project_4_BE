@@ -37,17 +37,17 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('updateOneKid', err));
         }
     },
-    async kidRecGameAtStart(kidID, gameStartData) {
+    async kidStartGame(kidID, gameStartData) {
         try {
             const result = await Kids.findByIdAndUpdate(kidID, {
                 $push: { gameHistory: gameStartData }
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('kidRecGameAtStart', err));
+            throw new Error(errUtils.buildDBErrMessage('kidStartGame', err));
         }
     },
-    async kidRecGameAtStop(kidID, gameStopData) {
+    async kidStopGame(kidID, gameStopData) {
         try {
             const result = await Kids.findOneAndUpdate({
                 "_id": kidID,
@@ -60,7 +60,7 @@ module.exports = {
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('kidRecGameAtStop', err));
+            throw new Error(errUtils.buildDBErrMessage('kidStopGame', err));
         }
     },
     async kidAddStatFirstPlayAtStop(kidID, gameStopData) {

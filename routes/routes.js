@@ -16,8 +16,8 @@ router.put('/parents/del/:idx/:kidx', parentControllers.deleteKidfromParent);
 router.get('/kids/:idx', kidControllers.getKidByID);
 router.post('/kids', kidControllers.createOneKid);
 router.put('/kids/:idx', kidControllers.updateOneKid);
-// router.put('/kids/start/:idx', kidControllers.kidStartGame);
-// router.put('/kids/stop/:idx/:gidx', kidControllers.kidStopGame);
+router.put('/kids/start/:idx/:gidx', kidControllers.kidStartGame);
+router.put('/kids/stop/:idx/:gidx', kidControllers.kidStopGame);
 
 router.get('/success', (req,res) => {res.send(`success with`, req.user)});
 router.get('/unsuccess', (req,res) => {res.send(`unsuccess with${messages.error}`)});
