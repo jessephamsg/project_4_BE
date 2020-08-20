@@ -17,16 +17,12 @@ module.exports = {
         const parent = await parentRepositories.updateOneParent(parentID, parentData);
         return parent;
     },
-    async addOneKidtoParent(parentID, kidData) {
-        const parent = await parentRepositories.addOneKidtoParent(parentID, kidData);
-        return parent;
-    },
-    async updateOneKidofParent(parentID, kidData) {
-        const parent = await parentRepositories.updateOneKidofParent(parentID, kidData);
+    async addKidtoParent(parentID, kidData) {
+        const parent = await parentRepositories.addKidtoParent(parentID, kidData);
         return parent;
     },
     async getParentByUsername(username) {
-        const parent = await parentRepositories.getByUsername(username)
+        const parent = await parentRepositories.getParentByUsername(username)
         return parent;
     }
 }

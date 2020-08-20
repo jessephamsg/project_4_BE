@@ -1,6 +1,5 @@
 const Parents = require('../models/Parents');
 const errUtils = require('./utils/error');
-const parentServices = require('../services/parentServices');
 
 module.exports = {
     async getByFilter(filter) {
@@ -43,30 +42,17 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('updateOneParent', err));
         }
     },
-    async addOneKidtoParent(parentID, kidData) {
+    async addKidtoParent(parentID, kidData) {
         try {
             const result = await Parents.findByIdAndUpdate(parentID, {
                 $push: { kidsList: kidData }
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('addOneKidtoParent', err));
+            throw new Error(errUtils.buildDBErrMessage('addKidtoParent', err));
         }
     },
-    async updateOneKidofParent(parentID, kidData) {
-        try {
-            const result = await Parents.findOneAndUpdate({
-                "_id" : parentID,
-                "kidsList.kidID" : kidData.kidID
-            }, {
-                $set: { "kidsList.$.kidName": kidData.kidName }
-            });
-            return result;
-        } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('updateOneKidofParent', err));
-        }
-    },
-    async getByUsername(username) {
+    async getParentByUsername(username) {
         try {
             const result = await Parents.findOne({ parentName: username});
             if (!result) {
@@ -74,7 +60,7 @@ module.exports = {
             }
             return result
         } catch(err) {
-            throw new Error(errUtils.buildDBErrMessage('getByUsername', err));
+            throw new Error(errUtils.buildDBErrMessage('getParentByUsername', err));
         }
     }
 }

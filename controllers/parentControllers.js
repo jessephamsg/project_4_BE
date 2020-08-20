@@ -63,7 +63,7 @@ module.exports = {
                 parentEmail,
                 parentPassword
             })
-            responseFormatter.responseOK(req, res, 'One Parent successfully added!');
+            responseFormatter.responseOK(req, res, 'createOneParent is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
@@ -82,44 +82,24 @@ module.exports = {
                 parentEmail,
                 parentPassword
             })
-            responseFormatter.responseOK(req, res, 'One Parent successfully updated!');
+            responseFormatter.responseOK(req, res, 'updateOneParent is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async addOneKidtoParent(req, res) {
+    async addKidtoParent(req, res) {
         const parentID = req.params.idx;
         try {
             const {
                 kidID,
-                kidName,
             } = req.body;
 
-            await parentServices.addOneKidtoParent(parentID, {
+            await parentServices.addKidtoParent(parentID, {
                 kidID,
-                kidName,
             })
-            responseFormatter.responseOK(req, res, 'Kid of Parent successfully added!');
+            responseFormatter.responseOK(req, res, 'addKidtoParent is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async updateOneKidofParent(req, res) {
-        const parentID = req.params.idx;
-        const kidID = req.params.kidx;
-        try {
-            const {
-                kidName,
-            } = req.body;
-
-            await parentServices.updateOneKidofParent(parentID, {
-                kidID,
-                kidName,
-            })
-            responseFormatter.responseOK(req, res, 'Kid of Parent successfully updated!');
-        } catch (err) {
-            console.log('err@updateOneKidofParent@parentController: ',err);
-            responseFormatter.responseErr(req, res, err);
-        }
-    }
 }
