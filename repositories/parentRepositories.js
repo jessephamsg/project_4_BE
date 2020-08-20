@@ -26,6 +26,17 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getParentByID', err));
         }
     },
+    async getParentByUsername(username) {
+        try {
+            const result = await Parents.findOne({ parentName: username });
+            if (!result) {
+                throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
+            }
+            return result
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('getParentByUsername', err));
+        }
+    },
     async createOneParent(newParent) {
         try {
             const result = await Parents.create(newParent);
@@ -52,15 +63,17 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('addKidtoParent', err));
         }
     },
-    async getParentByUsername(username) {
+    async deleteKidfromParent(parentID, kidID) {
+        
+        console.log("parentID@deleteKidfromParent@parentREpositories", parentID);
+        console.log("kidID@deleteKidfromParent@parentREpositories", kidID);
         try {
-            const result = await Parents.findOne({ parentName: username});
-            if (!result) {
-                throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
-            }
-            return result
-        } catch(err) {
-            throw new Error(errUtils.buildDBErrMessage('getParentByUsername', err));
+            const result = await Parents.updateOne({ _id: parentID }, {
+                "$pull": { "kidsList": { "kidID": kidID } }
+            });
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('deleteKidfromParent', err));
         }
-    }
+    },
 }

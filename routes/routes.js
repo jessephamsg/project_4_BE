@@ -11,7 +11,7 @@ router.post('/parents', parentControllers.createOneParent);
 router.put('/parents/:idx', parentControllers.updateOneParent);
 router.put('/parents/change/:idx', parentControllers.changePwdOneParent);
 router.put('/parents/add/:idx', parentControllers.addKidtoParent);
-// router.put('/parents/del/:idx', parentControllers.deleteKidfromParent);
+router.put('/parents/del/:idx/:kidx', parentControllers.deleteKidfromParent);
 
 // router.get('/kids/:idx', kidControllers.getKidByID);
 // router.post('/kids', kidControllers.createOneKid);

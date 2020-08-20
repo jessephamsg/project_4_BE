@@ -9,6 +9,10 @@ module.exports = {
         const parent = await parentRepositories.getParentByID(parentID);
         return parent;
     },
+    async getParentByUsername(username) {
+        const parent = await parentRepositories.getParentByUsername(username)
+        return parent;
+    },
     async createOneParent(newParent) {
         const parent = await parentRepositories.createOneParent(newParent);
         return parent;
@@ -21,8 +25,8 @@ module.exports = {
         const parent = await parentRepositories.addKidtoParent(parentID, kidData);
         return parent;
     },
-    async getParentByUsername(username) {
-        const parent = await parentRepositories.getParentByUsername(username)
+    async deleteKidfromParent(parentID, kidID) {
+        const parent = await parentRepositories.deleteKidfromParent(parentID, kidID);
         return parent;
-    }
+    },
 }

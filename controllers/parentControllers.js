@@ -115,4 +115,14 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+    async deleteKidfromParent(req, res) {
+        const parentID = req.params.idx;
+        const kidID = req.params.kidx;
+        try {
+            await parentServices.deleteKidfromParent(parentID, kidID)
+            responseFormatter.responseOK(req, res, 'deleteKidfromParent is successful!');
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    }
 }
