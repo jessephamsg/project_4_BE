@@ -17,7 +17,6 @@ const ParentsSchema = new Schema(
     kidsList: [{
       _id: false,
       kidID: { type: String, required: true },
-      kidName: { type: String, required: true },
     }],
   },
   {

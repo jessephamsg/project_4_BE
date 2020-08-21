@@ -18,7 +18,7 @@ const KidsSchema = new Schema(
     kidMaxScreenTime: {
       type: Number
     },
-    kidIsEmailNotif: {
+    isKidEmailNotified: {
       type: Boolean,
     },
     kidBDay: {
@@ -29,16 +29,21 @@ const KidsSchema = new Schema(
       type: Number,
       required: true
     },
-    gameStat: [{
+    gameStatSummary: [{
       _id: false,
       gameID: { type: String, required: true },
       gameName: { type: String, required: true },
-      gameLevel: { type: Object },
-      timesPlayed: { type: Number, required: true },
-      totalMinsPlayed: { type: Number, required: true },
-      highestScore: { type: Number, required: true },
+      gameDetail: [{
+        gameLevel: { type: Number, required: true },
+        playFrequency: { type: Number, required: true },
+        playDuration: { type: Number, required: true },
+        highestScore: { type: Number, required: true },
+        avgAttemptsBeforeSuccess: { type: Number },
+        avgNumberOfPauses: { type: Number },
+        avgGamePauseTime: { type: Number },
+      }],
     }],
-    gameHistory: [{
+    gamePlayHistory: [{
       _id: false,
       gameID: { type: String, required: true },
       gameName: { type: String, required: true },
@@ -46,6 +51,9 @@ const KidsSchema = new Schema(
       timeStartPlay: { type: Date, required: true },
       timeStopPlay: { type: Date },
       currentScore: { type: Number },
+      attemptsBeforeSuccess: { type: Number },
+      numberOfPauses: { type: Number },
+      gamePauseTime: { array: Number },
     }]
   },
   {
