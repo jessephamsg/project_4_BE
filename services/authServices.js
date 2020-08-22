@@ -21,8 +21,7 @@ module.exports = function (passport)  {
                 return done(null, false, {message : 'Password is incorrect'})
             }
          } catch (err) {
-             console.log('something went wrong', err.message)
-                return done(null,false)
+                return done(null,false, {message: err.message})
         }
     })
     );
