@@ -3,6 +3,11 @@ const router = express.Router();
 const parentControllers = require('../controllers/parentControllers');
 const kidControllers = require('../controllers/kidControllers');
 const gameControllers = require('../controllers/gameControllers');
+const { ensureAuth } = require('../services/config/ensureAuth') // ensure there is a user session before proceeding
+
+
+router.get('/parent', ensureAuth, parentControllers.getAllParents);
+
 
 router.get('/', parentControllers.getAllParents);
 router.get('/parents', parentControllers.getAllParents);
@@ -26,8 +31,6 @@ router.post('/games', gameControllers.createOneGame);
 router.put('/games/:idx', gameControllers.updateOneGame);
 router.delete('/games/:idx', gameControllers.deleteOneGame);
 
-router.get('/success', (req,res) => {res.send(`success with`, req.user)});
-router.get('/unsuccess', (req,res) => {res.send(`unsuccess with${messages.error}`)});
 router.post('/login', parentControllers.login); // logging in with user input with username and password
 
 module.exports = router;

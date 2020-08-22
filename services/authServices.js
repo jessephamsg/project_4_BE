@@ -5,9 +5,7 @@ const bcrypt = require("bcrypt")
 
 module.exports = function (passport)  {
     passport.use(
-        new LocalStrategy (
-        { usernameField: 'username',
-         passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
+        new LocalStrategy ({ usernameField: 'username', passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
         async (username, password, done) => {
         console.log(username)
         const user = await parentRepositories.getParentByUsername(username)
@@ -23,8 +21,7 @@ module.exports = function (passport)  {
                 return done(null, false, {message : 'Password is incorrect'})
             }
          } catch (err) {
-             console.log('something went wrong', err.message)
-                return done(null,false)
+                return done(null,false, {message: err.message})
         }
     })
     );
