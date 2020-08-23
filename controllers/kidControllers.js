@@ -1,11 +1,13 @@
 const kidServices = require('../services/kidServices');
+const gameHistoryServices = require('../services/gameHistoryServices');
+const gameStatisticServices = require('../services/gameStatisticServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
     async getKidByID(req, res) {
-        const kidID = req.params.idx;
-        const result = await kidServices.getKidByID(kidID);
         try {
+            const kidID = req.params.idx;
+            const result = await kidServices.getKidByID(kidID);
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
@@ -38,8 +40,8 @@ module.exports = {
         }
     },
     async updateOneKid(req, res) {
-        const kidID = req.params.idx;
         try {
+            const kidID = req.params.idx;
             const {
                 kidName,
                 kidIcon,
@@ -63,9 +65,9 @@ module.exports = {
         }
     },
     async kidStartGame(req, res) {
-        const kidID = req.params.idx;
-        const gameID = req.params.gidx;
         try {
+            const kidID = req.params.idx;
+            const gameID = req.params.gidx;
             const {
                 gameID,
                 gameName,
@@ -85,9 +87,9 @@ module.exports = {
         }
     },
     async kidStopGame(req, res) {
-        const kidID = req.params.idx;
-        const gameID = req.params.gidx;
         try {
+            const kidID = req.params.idx;
+            const gameID = req.params.gidx;
             const {
                 timeStopPlay,
                 currentScore
@@ -105,8 +107,8 @@ module.exports = {
         }
     },
     async deleteOneKid(req, res) {
-        const kidID = req.params.idx;
         try {
+            const kidID = req.params.idx;
             await kidServices.deleteOneKid(kidID)
             responseFormatter.responseOK(req, res, 'deleteOneKid is successful!');
         } catch (err) {
