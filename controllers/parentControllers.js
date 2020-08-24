@@ -30,6 +30,7 @@ module.exports = {
         }
     },
     async createOneParent(req, res) {
+        console.log(req.body)
         try {
             const {
                 parentName,

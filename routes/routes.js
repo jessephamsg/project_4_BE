@@ -33,5 +33,6 @@ router.put('/games/:idx', gameControllers.updateOneGame);
 router.delete('/games/:idx', gameControllers.deleteOneGame);
 
 router.post('/login', authControllers.login); // logging in with user input with username and password
+router.post('/isAuthenticated', authControllers.isAuthenticated) // get parent data from id stored in localstorage
 
 module.exports = router;
