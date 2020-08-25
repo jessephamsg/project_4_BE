@@ -13,11 +13,12 @@ module.exports = {
                 req.login(user, (err) => {
                     if(err) throw err;
                     const {_id, parentName} = req.user
-                    res.cookie('name', parentName, { // setting cookies
-                        expires : new Date(Date.now() + 12 * 360000), // cookies expires after 12 hours
-                        secure: true,
-                        sameSite: 'none'
-                      })
+                    console.log('line16', req.user)
+                    // res.cookie('name', parentName, { // setting cookies
+                    //     expires : new Date(Date.now() + 12 * 360000), // cookies expires after 12 hours
+                    //     secure: true,
+                    //     sameSite: 'none'
+                    //   })
                     res.status(200).send({isAuthenticated : true, currentUser:{_id,parentName}})
                 })
             }
@@ -32,5 +33,14 @@ module.exports = {
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
-    }
+    },
+    getUser (req,res) {
+        console.log(req.user)
+        responseFormatter.responseOK(req, res, req.user);
+    },
+    logout(req, res) {
+        req.logout();
+        responseFormatter.responseOK(req, res, 'user logged out');
+      },
+      
 }
