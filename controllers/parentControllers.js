@@ -1,7 +1,6 @@
 const parentServices = require('../services/parentServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 const bcrypt = require('bcrypt')
-const passport = require("passport")
 
 module.exports = {
     async getAllParents(req, res) {
@@ -31,6 +30,7 @@ module.exports = {
         }
     },
     async createOneParent(req, res) {
+        console.log(req.body)
         try {
             const {
                 parentName,
