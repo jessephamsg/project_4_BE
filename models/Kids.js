@@ -22,7 +22,7 @@ const KidsSchema = new Schema(
       type: Boolean,
     },
     kidBDay: {
-      type: Date,
+      type: String,
       required: true
     },
     kidAge: {

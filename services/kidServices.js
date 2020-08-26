@@ -6,6 +6,7 @@ module.exports = {
         return kid;
     },
     async createOneKid(newKid) {
+        console.log('service', newKid)
         const kid = await kidRepositories.createOneKid(newKid);
         return kid;
     },
