@@ -5,14 +5,14 @@ const bcrypt = require("bcrypt")
 
 module.exports = function (passport)  {
     passport.use(
-        new LocalStrategy ({ usernameField: 'parentName', passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
-        async (parentName, password, done) => {
-        const user = await parentRepositories.getParentByUsername(parentName)
+        new LocalStrategy ({ usernameField: 'username', passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
+        async (username, password, done) => {
+        const user = await parentRepositories.getParentByUsername(username)
         if (!user) {
             return done(null, false, {message : 'No username is found'});
         }
         try {
-            if (await bcrypt.compare(password, user.parentPassword)) {
+            if (await bcrypt.compare(password, user.password)) {
                 return done(null, user)
             } else {
                 return done(null, false, {message : 'Password is incorrect'})

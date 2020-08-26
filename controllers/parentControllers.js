@@ -30,18 +30,18 @@ module.exports = {
         }
     },
     async createOneParent(req, res) {
-        console.log(req.body)
+        console.log('parentcontroller', req.body)
         try {
             const {
-                parentName,
-                parentEmail,
-                parentPassword
+                username,
+                email,
+                password
             } = req.body;
-            const hashedPassword = await bcrypt.hash(parentPassword, 10); // hashed the password
+            const hashedPassword = await bcrypt.hash(password, 10); // hashed the password
             await parentServices.createOneParent({
-                parentName,
-                parentEmail,
-                parentPassword : hashedPassword,
+                username,
+                email,
+                password : hashedPassword,
             })
             responseFormatter.responseOK(req, res, 'createOneParent is successful!');
         } catch (err) {
@@ -52,13 +52,13 @@ module.exports = {
         const parentID = req.params.idx;
         try {
             const {
-                parentName,
-                parentEmail,
+                username,
+                email,
             } = req.body;
 
             await parentServices.updateOneParent(parentID, {
-                parentName,
-                parentEmail,
+                username,
+                email,
             })
             responseFormatter.responseOK(req, res, 'updateOneParent is successful!');
         } catch (err) {
@@ -69,11 +69,11 @@ module.exports = {
         const parentID = req.params.idx;
         try {
             const {
-                parentPassword,
+                password,
             } = req.body;
-            const hashedPassword = await bcrypt.hash(parentPassword, 10); // hashed the password
+            const hashedPassword = await bcrypt.hash(password, 10); // hashed the password
             await parentServices.updateOneParent(parentID, {
-                parentPassword : hashedPassword,
+                password : hashedPassword,
             })
             responseFormatter.responseOK(req, res, 'changePwdOneParent is successful!');
         } catch (err) {

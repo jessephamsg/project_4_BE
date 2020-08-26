@@ -15,22 +15,22 @@ module.exports = {
         try {
             const {
                 parentID,
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
+                name,
+                icon,
+                maxScreenTime,
                 // isKidEmailNotified,
-                kidBDay,
-                kidAge
+                dob,
+                age
             } = req.body;
             console.log('controller', req.body)
             await kidServices.createOneKid({
                 parentID,
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
+                name,
+                icon,
+                maxScreenTime,
                 // isKidEmailNotified,
-                kidBDay,
-                kidAge
+                dob,
+                age
             })
             responseFormatter.responseOK(req, res, 'One Kid successfully added!');
         } catch (err) {
@@ -41,21 +41,20 @@ module.exports = {
         const kidID = req.params.idx;
         try {
             const {
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
-                isKidEmailNotified,
-                kidBDay,
-                kidAge
+                name,
+                icon,
+                maxScreenTime,
+                // isKidEmailNotified,
+                dob,
+                age
             } = req.body;
-
             await kidServices.updateOneKid(kidID, {
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
+                name,
+                icon,
+                maxScreenTime,
                 isKidEmailNotified,
-                kidBDay,
-                kidAge
+                dob,
+                age
             })
             responseFormatter.responseOK(req, res, 'One Kid successfully updated!');
         } catch (err) {

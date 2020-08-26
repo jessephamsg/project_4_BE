@@ -27,11 +27,10 @@ module.exports = {
             const parentID = newKid.parentID
             const kidData = {
                 kidID : result._id,
-                kidName : result.kidName,
-                kidIcon : result.kidIcon
+                kidName : result.name,
+                kidIcon : result.icon
             }
             const addToParent = await parentRepositories.addKidtoParent(parentID,kidData)
-            // need to append new kid id to parent kid list
             console.log(addToParent)
             return result;
             

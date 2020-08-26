@@ -7,25 +7,25 @@ const KidsSchema = new Schema(
       type: String,
       required: true
     },
-    kidName: {
+    name: {
       type: String,
       required: true
     },
-    kidIcon: {
+    icon: {
       type: String,
       required: true
     },
-    kidMaxScreenTime: {
+    maxScreenTime: {
       type: Number
     },
     isKidEmailNotified: {
       type: Boolean,
     },
-    kidBDay: {
+    dob: {
       type: String,
       required: true
     },
-    kidAge: {
+    age: {
       type: Number,
       required: true
     },
