@@ -7,10 +7,6 @@ const GamesSchema = new Schema(
             type: String,
             required: true
         },
-        // GameIcon: { -> put to front end
-        //     type: String,
-        //     required: true
-        // },
         GameCategory: {
             type: String,
             required: true
@@ -28,22 +24,11 @@ const GamesSchema = new Schema(
             type: Number
         },
         GamesReview: [{
+            _id: false,
             parentID: { type: String },
             reviewRating: { type: Number },
             reviewDesc: { type: String }
-        }],
-        // GameSettings: [{ -> put to front end
-        //     levelNum: { type: Number },
-        //     levelDifficulty: { type: String },
-        //     levelDesc: { type: String },
-        //     isLevelTimed: { type: Boolean },
-        //     levelDurationInSecond: { type: Number },
-        //     levelHighestPossibleScore: { type: Number },
-        //     levelConfiguration: { type: Object }
-        // }],
-        // GameAssets: [{ -> put to front end
-        //     type: Object
-        // }]
+        }]
     }
 );
 

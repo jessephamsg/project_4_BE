@@ -3,9 +3,9 @@ const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
     async getGameByID(req, res) {
-        const gameID = req.params.idx;
-        const result = await gameServices.getGameByID(gameID);
         try {
+            const gameID = req.params.idx;
+            const result = await gameServices.getGameByID(gameID);
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
@@ -15,7 +15,6 @@ module.exports = {
         try {
             const {
                 GameName,
-                GameIcon,
                 GameCategory,
                 GameDesc,
                 GameDeveloper,
@@ -24,18 +23,10 @@ module.exports = {
                 parentID,
                 reviewRating,
                 reviewDesc,
-                levelNum,
-                levelDifficulty,
-                levelDesc,
-                isLevelTimed,
-                levelDurationInSecond,
-                levelHighestPossibleScore,
-                levelConfiguration
             } = req.body;
 
             await gameServices.createOneGame({
                 GameName,
-                GameIcon,
                 GameCategory,
                 GameDesc,
                 GameDeveloper,
@@ -45,15 +36,6 @@ module.exports = {
                     parentID,
                     reviewRating,
                     reviewDesc,
-                },
-                GameSettings: {
-                    levelNum,
-                    levelDifficulty,
-                    levelDesc,
-                    isLevelTimed,
-                    levelDurationInSecond,
-                    levelHighestPossibleScore,
-                    levelConfiguration,
                 },
             })
             responseFormatter.responseOK(req, res, 'One Game successfully added!');
@@ -62,11 +44,10 @@ module.exports = {
         }
     },
     async updateOneGame(req, res) {
-        const gameID = req.params.idx;
         try {
+            const gameID = req.params.idx;
             const {
                 GameName,
-                GameIcon,
                 GameCategory,
                 GameDesc,
                 GameDeveloper,
@@ -75,18 +56,10 @@ module.exports = {
                 parentID,
                 reviewRating,
                 reviewDesc,
-                levelNum,
-                levelDifficulty,
-                levelDesc,
-                isLevelTimed,
-                levelDurationInSecond,
-                levelHighestPossibleScore,
-                levelConfiguration
             } = req.body;
 
             await gameServices.updateOneGame(gameID, {
                 GameName,
-                GameIcon,
                 GameCategory,
                 GameDesc,
                 GameDeveloper,
@@ -97,15 +70,6 @@ module.exports = {
                     reviewRating,
                     reviewDesc,
                 },
-                GameSettings: {
-                    levelNum,
-                    levelDifficulty,
-                    levelDesc,
-                    isLevelTimed,
-                    levelDurationInSecond,
-                    levelHighestPossibleScore,
-                    levelConfiguration,
-                },
             })
             responseFormatter.responseOK(req, res, 'One Game successfully updated!');
         } catch (err) {
@@ -113,8 +77,8 @@ module.exports = {
         }
     },
     async deleteOneGame(req, res) {
-        const gameID = req.params.idx;
         try {
+            const gameID = req.params.idx;
             await gameServices.deleteOneGame(gameID)
             responseFormatter.responseOK(req, res, 'deleteOneGame is successful!');
         } catch (err) {
