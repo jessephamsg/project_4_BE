@@ -1,5 +1,4 @@
 const kidRepositories = require('../repositories/kidRepositories');
-const parentRepositories = require('../repositories/parentRepositories')
 
 module.exports = {
     async getKidByID(kidID) {
@@ -7,7 +6,6 @@ module.exports = {
         return kid;
     },
     async createOneKid(newKid) {
-        console.log('service', newKid)
         const kid = await kidRepositories.createOneKid(newKid);
         return kid;
     },

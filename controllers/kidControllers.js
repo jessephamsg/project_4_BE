@@ -1,4 +1,5 @@
 const kidServices = require('../services/kidServices');
+const parentServices = require('../services/parentServices');
 // const gameHistoryServices = require('../services/gameHistoryServices');
 // const gameStatisticServices = require('../services/gameStatisticServices');
 const responseFormatter = require('../services/shared/responseFormatter');
@@ -24,8 +25,7 @@ module.exports = {
                 bDay,
                 age
             } = req.body;
-            console.log('controller', req.body)
-            await kidServices.createOneKid({
+            const newKid = await kidServices.createOneKid({
                 parentID,
                 name,
                 icon,
@@ -34,6 +34,11 @@ module.exports = {
                 bDay,
                 age
             })
+            const kidID = newKid._id;
+            await parentServices.addKid(parentID, {
+                kidID,
+            })
+
             responseFormatter.responseOK(req, res, 'One Kid successfully added!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
