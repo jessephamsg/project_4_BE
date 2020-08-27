@@ -7,53 +7,32 @@ const KidsSchema = new Schema(
       type: String,
       required: true
     },
-    kidName: {
+    name: {
       type: String,
       required: true
     },
-    kidIcon: {
+    icon: {
       type: String,
       required: true
     },
-    kidMaxScreenTime: {
+    maxScreenTime: {
       type: Number
     },
-    isKidEmailNotified: {
+    isPlaying : {
       type: Boolean,
     },
-    kidBDay: {
+    bDay: {
       type: String,
       required: true
     },
-    kidAge: {
+    age: {
       type: Number,
       required: true
     },
-    gameStatSummary: [{
+    gamesPlayed: [{
       _id: false,
       gameID: { type: String, required: true },
-      gameName: { type: String, required: true },
-      gameDetail: [{
-        gameLevel: { type: Number, required: true },
-        playFrequency: { type: Number, required: true },
-        playDuration: { type: Number, required: true },
-        highestScore: { type: Number, required: true },
-        avgAttemptsBeforeSuccess: { type: Number },
-        avgNumberOfPauses: { type: Number },
-        avgGamePauseTime: { type: Number },
-      }],
-    }],
-    gamePlayHistory: [{
-      _id: false,
-      gameID: { type: String, required: true },
-      gameName: { type: String, required: true },
-      gameLevel: { type: Object },
-      timeStartPlay: { type: Date, required: true },
-      timeStopPlay: { type: Date },
-      currentScore: { type: Number },
-      attemptsBeforeSuccess: { type: Number },
-      numberOfPauses: { type: Number },
-      gamePauseTime: { array: Number },
+      gameHistoryID: { array: String }
     }]
   },
   {

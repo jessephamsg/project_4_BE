@@ -1,44 +1,45 @@
-const Games = require('../models/Games');
+const GameHistory = require('../models/GameHistory');
 const errUtils = require('./utils/error');
 
 module.exports = {
     async getByFilter(filter) {
         try {
-            const results = await Games.find(filter);
+            const results = await GameHistory.find(filter);
             return results;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('getByFilter', err));
         }
     },
-    async getByID(GamesID) {
+    async getByID(GameHistoryID) {
         try {
-            const result = await Games.findById(GamesID);
+            const result = await GameHistory.findById(GameHistoryID);
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('getByID', err));
         }
     },
-    async createOne(newGame) {
+    async createOne(newGameHistory) {
         try {
-            const result = await Games.create(newGame);
+            const result = await GameHistory.create(newGameHistory);
             return result;
+            
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
     },
-    async updateOne(gameID, gameData) {
+    async updateOne(gameHistoryID, gameHistoryData) {
         try {
-            const result = await Games.findByIdAndUpdate(gameID, {
-                $set: gameData
+            const result = await GameHistory.findByIdAndUpdate(gameHistoryID, {
+                $set: gameHistoryData
             });
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('updateOne', err));
         }
     },
-    async deleteOne(gameID) {
+    async deleteOne(gameHistoryID) {
         try {
-            const result = await Games.findByIdAndRemove(gameID);
+            const result = await GameHistory.findByIdAndRemove(gameHistoryID);
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('deleteOne', err));

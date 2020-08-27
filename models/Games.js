@@ -3,46 +3,31 @@ const Schema = mongoose.Schema;
 
 const GamesSchema = new Schema(
     {
-        GameName: {
+        name: {
             type: String,
             required: true
         },
-        GameIcon: {
+        category: {
             type: String,
             required: true
         },
-        GameCategory: {
-            type: String,
-            required: true
-        },
-        GameDesc: {
+        desc: {
             type: String
         },
-        GameDeveloper: {
+        developer: {
             type: String
         },
-        GameStatus: {
+        status: {
             type: String
         },
-        GameAvgRating: {
+        avgRating: {
             type: Number
         },
-        GamesReview: [{
+        reviews: [{
+            _id: false,
             parentID: { type: String },
             reviewRating: { type: Number },
             reviewDesc: { type: String }
-        }],
-        GameSettings: [{
-            levelNum: { type: Number },
-            levelDifficulty: { type: String },
-            levelDesc: { type: String },
-            isLevelTimed: { type: Boolean },
-            levelDurationInSecond: { type: Number },
-            levelHighestPossibleScore: { type: Number },
-            levelConfiguration: { type: Object }
-        }],
-        GameAssets: [{
-            type: Object
         }]
     }
 );

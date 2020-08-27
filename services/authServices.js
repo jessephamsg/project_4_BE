@@ -7,7 +7,7 @@ module.exports = function (passport)  {
     passport.use(
         new LocalStrategy ({ usernameField: 'parentName', passwordField: 'password'}, /// if we want to use email as sign, change the field accordingly
         async (parentName, password, done) => {
-        const user = await parentRepositories.getParentByUsername(parentName)
+        const user = await parentRepositories.getByName(parentName)
         if (!user) {
             return done(null, false, {message : 'No username is found'});
         }
@@ -28,7 +28,7 @@ module.exports = function (passport)  {
         done(null, user.id)
     })
     passport.deserializeUser (async (id, done) => { // id is the serialized user
-         const user = await parentRepositories.getParentByID(id)
+         const user = await parentRepositories.getByID(id)
          console.log(`deserialized with ${user.id}`)
          return done(null, user);
     })

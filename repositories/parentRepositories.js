@@ -10,23 +10,23 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getByFilter', err));
         }
     },
-    async getAllParents() {
+    async getAll() {
         try {
             const results = await this.getByFilter({});
             return results;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getAllParents', err));
+            throw new Error(errUtils.buildDBErrMessage('getAll', err));
         }
     },
-    async getParentByID(ParentsID) {
+    async getByID(ParentsID) {
         try {
             const result = await Parents.findById(ParentsID);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getParentByID', err));
+            throw new Error(errUtils.buildDBErrMessage('getByID', err));
         }
     },
-    async getParentByUsername(username) {
+    async getByName(username) {
         try {
             const result = await Parents.findOne({ parentName: username });
             if (!result) {
@@ -34,46 +34,51 @@ module.exports = {
             }
             return result
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getParentByUsername', err));
+            throw new Error(errUtils.buildDBErrMessage('getByName', err));
         }
     },
-    async createOneParent(newParent) {
+    async createOne(newParent) {
         try {
             const result = await Parents.create(newParent);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('createOneParent', err));
+            throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
     },
-    async updateOneParent(parentID, parentData) {
+    async updateOne(parentID, parentData) {
         try {
             const result = await Parents.findByIdAndUpdate(parentID, parentData);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('updateOneParent', err));
+            throw new Error(errUtils.buildDBErrMessage('updateOne', err));
         }
     },
-    async addKidtoParent(parentID, kidData) {
+    async deleteOne(parentID) {
+        try {
+            const result = await Parents.findByIdAndRemove(parentID);
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('deleteOne', err));
+        }
+    },
+    async addKid(parentID, kidData) {
         try {
             const result = await Parents.findByIdAndUpdate(parentID, {
                 $push: { kidsList: kidData }
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('addKidtoParent', err));
+            throw new Error(errUtils.buildDBErrMessage('addKid', err));
         }
     },
-    async deleteKidfromParent(parentID, kidID) {
-        
-        console.log("parentID@deleteKidfromParent@parentREpositories", parentID);
-        console.log("kidID@deleteKidfromParent@parentREpositories", kidID);
+    async deleteKid(parentID, kidID) {
         try {
             const result = await Parents.updateOne({ _id: parentID }, {
                 "$pull": { "kidsList": { "kidID": kidID } }
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('deleteKidfromParent', err));
+            throw new Error(errUtils.buildDBErrMessage('deleteKid', err));
         }
     },
 }

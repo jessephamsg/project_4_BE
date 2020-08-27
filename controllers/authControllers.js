@@ -27,7 +27,7 @@ module.exports = {
     async isAuthenticated (req,res) {
         try {
             const id = req.body.id
-            const result = await parentServices.getParentByID(id)
+            const result = await parentServices.getByID(id)
             console.log(result.parentName)
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
