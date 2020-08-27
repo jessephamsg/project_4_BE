@@ -24,9 +24,9 @@ router.put('/kids/stop/:idx/:gidx', ensureAuth, kidControllers.kidStopGame);
 router.delete('/kids/:idx', kidControllers.deleteOneKid);
 
 router.get('/games/:idx', gameControllers.getGameByID);
-router.post('/games', gameControllers.createOneGame);
+router.post('/games', ensureAuth, gameControllers.createOneGame);
 router.put('/games/:idx', ensureAuth, gameControllers.updateOneGame); 
-router.delete('/games/:idx', gameControllers.deleteOneGame);
+router.delete('/games/:idx', ensureAuth, gameControllers.deleteOneGame);
 
 router.post('/login', authControllers.login); // logging in with user input with username and password
 router.post('/isAuthenticated', authControllers.isAuthenticated) // get parent data from id stored in localstorage

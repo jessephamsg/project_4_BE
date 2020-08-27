@@ -14,25 +14,25 @@ module.exports = {
     async createOneGame(req, res) {
         try {
             const {
-                GameName,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
+                Name,
+                Category,
+                Desc,
+                Developer,
+                Status,
+                AvgRating,
                 parentID,
                 reviewRating,
                 reviewDesc,
             } = req.body;
 
             await gameServices.createOneGame({
-                GameName,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
-                GamesReview: {
+                Name,
+                Category,
+                Desc,
+                Developer,
+                Status,
+                AvgRating,
+                Reviews: {
                     parentID,
                     reviewRating,
                     reviewDesc,
@@ -47,25 +47,25 @@ module.exports = {
         try {
             const gameID = req.params.idx;
             const {
-                GameName,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
+                Name,
+                Category,
+                Desc,
+                Developer,
+                Status,
+                AvgRating,
                 parentID,
                 reviewRating,
                 reviewDesc,
             } = req.body;
 
             await gameServices.updateOneGame(gameID, {
-                GameName,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
-                GamesReview: {
+                Name,
+                Category,
+                Desc,
+                Developer,
+                Status,
+                AvgRating,
+                Review: {
                     parentID,
                     reviewRating,
                     reviewDesc,
