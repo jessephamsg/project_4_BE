@@ -39,7 +39,7 @@ module.exports = {
                 kidID,
             })
 
-            responseFormatter.responseOK(req, res, 'One Kid successfully added!');
+            responseFormatter.responseOK(req, res, 'One Kid successfully added (to both kids and parents)!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
@@ -106,15 +106,17 @@ module.exports = {
             })
             responseFormatter.responseOK(req, res, 'kidStopGame successfully updated!');
         } catch (err) {
-            console.log('err@kidStopGame@kidController: ', err);
             responseFormatter.responseErr(req, res, err);
         }
     },
     async deleteOneKid(req, res) {
         try {
             const kidID = req.params.idx;
-            await kidServices.deleteOneKid(kidID)
-            responseFormatter.responseOK(req, res, 'deleteOneKid is successful!');
+            const kidData = await kidServices.getKidByID(kidID);
+            const parentID = kidData.parentID;
+            await kidServices.deleteOneKid(kidID);
+            await parentServices.deleteKid(parentID, kidID)
+            responseFormatter.responseOK(req, res, 'deleteOneKid (from both kids and parents) is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
