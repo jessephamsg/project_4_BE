@@ -2,16 +2,16 @@ const gameServices = require('../services/gameServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
-    async getGameByID(req, res) {
+    async getByID(req, res) {
         try {
             const gameID = req.params.idx;
-            const result = await gameServices.getGameByID(gameID);
+            const result = await gameServices.getByID(gameID);
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async createOneGame(req, res) {
+    async createOne(req, res) {
         try {
             const {
                 Name,
@@ -25,7 +25,7 @@ module.exports = {
                 reviewDesc,
             } = req.body;
 
-            await gameServices.createOneGame({
+            await gameServices.createOne({
                 Name,
                 Category,
                 Desc,
@@ -43,7 +43,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async updateOneGame(req, res) {
+    async updateOne(req, res) {
         try {
             const gameID = req.params.idx;
             const {
@@ -58,7 +58,7 @@ module.exports = {
                 reviewDesc,
             } = req.body;
 
-            await gameServices.updateOneGame(gameID, {
+            await gameServices.updateOne(gameID, {
                 Name,
                 Category,
                 Desc,
@@ -76,11 +76,11 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async deleteOneGame(req, res) {
+    async deleteOne(req, res) {
         try {
             const gameID = req.params.idx;
-            await gameServices.deleteOneGame(gameID)
-            responseFormatter.responseOK(req, res, 'deleteOneGame is successful!');
+            await gameServices.deleteOne(gameID)
+            responseFormatter.responseOK(req, res, 'deleteOne is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }

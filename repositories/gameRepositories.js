@@ -10,38 +10,38 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getByFilter', err));
         }
     },
-    async getGameByID(GamesID) {
+    async getByID(GamesID) {
         try {
             const result = await Games.findById(GamesID);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getGameByID', err));
+            throw new Error(errUtils.buildDBErrMessage('getByID', err));
         }
     },
-    async createOneGame(newGame) {
+    async createOne(newGame) {
         try {
             const result = await Games.create(newGame);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('createOneGame', err));
+            throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
     },
-    async updateOneGame(gameID, gameData) {
+    async updateOne(gameID, gameData) {
         try {
             const result = await Games.findByIdAndUpdate(gameID, {
                 $set: gameData
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('updateOneGame', err));
+            throw new Error(errUtils.buildDBErrMessage('updateOne', err));
         }
     },
-    async deleteOneGame(gameID) {
+    async deleteOne(gameID) {
         try {
             const result = await Games.findByIdAndRemove(gameID);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('deleteOneGame', err));
+            throw new Error(errUtils.buildDBErrMessage('deleteOne', err));
         }
     },
 }
