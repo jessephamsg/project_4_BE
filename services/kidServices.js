@@ -1,4 +1,5 @@
 const kidRepositories = require('../repositories/kidRepositories');
+const parentRepositories = require('../repositories/parentRepositories')
 
 module.exports = {
     async getKidByID(kidID) {

@@ -7,33 +7,32 @@ const KidsSchema = new Schema(
       type: String,
       required: true
     },
-    kidName: {
+    name: {
       type: String,
       required: true
     },
-    kidIcon: {
+    icon: {
       type: String,
       required: true
     },
-    kidMaxScreenTime: {
+    maxScreenTime: {
       type: Number
     },
-    isKidEmailNotified: {
+    isPlaying : {
       type: Boolean,
     },
-    kidBDay: {
+    bDay: {
       type: String,
       required: true
     },
-    kidAge: {
+    age: {
       type: Number,
       required: true
     },
-    games: [{
+    gamesPlayed: [{
       _id: false,
       gameID: { type: String, required: true },
-      gameName: { type: String, required: true },
-      gameHistory: { array: String }
+      gameHistoryID: { array: String }
     }]
   },
   {

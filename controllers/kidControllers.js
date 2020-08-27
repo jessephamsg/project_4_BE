@@ -15,24 +15,24 @@ module.exports = {
     },
     async createOneKid(req, res) {
         try {
+            const isPlaying = false;
             const {
                 parentID,
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
-                // isKidEmailNotified,
-                kidBDay,
-                kidAge
+                name,
+                icon,
+                maxScreenTime,
+                bDay,
+                age
             } = req.body;
             console.log('controller', req.body)
             await kidServices.createOneKid({
                 parentID,
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
-                // isKidEmailNotified,
-                kidBDay,
-                kidAge
+                name,
+                icon,
+                maxScreenTime,
+                isPlaying,
+                bDay,
+                age
             })
             responseFormatter.responseOK(req, res, 'One Kid successfully added!');
         } catch (err) {
@@ -43,21 +43,21 @@ module.exports = {
         try {
             const kidID = req.params.idx;
             const {
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
-                isKidEmailNotified,
-                kidBDay,
-                kidAge
+                name,
+                icon,
+                maxScreenTime,
+                isPlaying,
+                bDay,
+                age
             } = req.body;
 
             await kidServices.updateOneKid(kidID, {
-                kidName,
-                kidIcon,
-                kidMaxScreenTime,
-                isKidEmailNotified,
-                kidBDay,
-                kidAge
+                name,
+                icon,
+                maxScreenTime,
+                isPlaying,
+                bDay,
+                age
             })
             responseFormatter.responseOK(req, res, 'One Kid successfully updated!');
         } catch (err) {

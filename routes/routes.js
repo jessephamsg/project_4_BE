@@ -19,9 +19,9 @@ router.delete('/parents/:idx', ensureAuth, parentControllers.deleteOne);
 
 router.get('/kids/:idx', kidControllers.getKidByID);
 router.post('/kids', kidControllers.createOneKid);
-router.put('/kids/:idx', ensureAuth, kidControllers.updateOneKid);
-router.put('/kids/start/:idx/:gidx', ensureAuth, kidControllers.kidStartGame);
-router.put('/kids/stop/:idx/:gidx', ensureAuth, kidControllers.kidStopGame);
+router.put('/kids/:idx', kidControllers.updateOneKid);
+router.put('/kids/start/:idx/:gidx', kidControllers.kidStartGame);
+router.put('/kids/stop/:idx/:gidx', kidControllers.kidStopGame);
 router.delete('/kids/:idx', kidControllers.deleteOneKid);
 
 router.get('/games/:idx', gameControllers.getByID);
