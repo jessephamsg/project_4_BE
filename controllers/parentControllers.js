@@ -4,44 +4,43 @@ const bcrypt = require('bcrypt')
 
 module.exports = {
     async getAllParents(req, res) {
-        const results = await parentServices.getAllParents();
         try {
+            const results = await parentServices.getAllParents();
             responseFormatter.responseOK(req, res, results);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
     async getParentByID(req, res) {
-        const parentID = req.params.idx;
-        const result = await parentServices.getParentByID(parentID);
         try {
+            const parentID = req.params.idx;
+            const result = await parentServices.getParentByID(parentID);
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
     async getParentByUsername(req, res) {
-        const parentUsername = req.body.username;
-        const result = await parentServices.getParentByUsername(parentUsername);
         try {
+            const parentUsername = req.body.username;
+            const result = await parentServices.getParentByUsername(parentUsername);
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
     async createOneParent(req, res) {
-        console.log(req.body)
         try {
             const {
-                parentName,
-                parentEmail,
-                parentPassword
+                name,
+                email,
+                password
             } = req.body;
-            const hashedPassword = await bcrypt.hash(parentPassword, 10); // hashed the password
+            const hashedPassword = await bcrypt.hash(password, 10); // hashed the password
             await parentServices.createOneParent({
-                parentName,
-                parentEmail,
-                parentPassword : hashedPassword,
+                name,
+                email,
+                password: hashedPassword,
             })
             responseFormatter.responseOK(req, res, 'createOneParent is successful!');
         } catch (err) {
@@ -49,16 +48,16 @@ module.exports = {
         }
     },
     async updateOneParent(req, res) {
-        const parentID = req.params.idx;
         try {
+            const parentID = req.params.idx;
             const {
-                parentName,
-                parentEmail,
+                name,
+                email,
             } = req.body;
 
             await parentServices.updateOneParent(parentID, {
-                parentName,
-                parentEmail,
+                name,
+                email,
             })
             responseFormatter.responseOK(req, res, 'updateOneParent is successful!');
         } catch (err) {
@@ -66,14 +65,14 @@ module.exports = {
         }
     },
     async changePwdOneParent(req, res) {
-        const parentID = req.params.idx;
         try {
+            const parentID = req.params.idx;
             const {
-                parentPassword,
+                password,
             } = req.body;
-            const hashedPassword = await bcrypt.hash(parentPassword, 10); // hashed the password
+            const hashedPassword = await bcrypt.hash(password, 10); // hashed the password
             await parentServices.updateOneParent(parentID, {
-                parentPassword : hashedPassword,
+                password: hashedPassword,
             })
             responseFormatter.responseOK(req, res, 'changePwdOneParent is successful!');
         } catch (err) {
@@ -81,8 +80,8 @@ module.exports = {
         }
     },
     async addKidtoParent(req, res) {
-        const parentID = req.params.idx;
         try {
+            const parentID = req.params.idx;
             const {
                 kidID,
             } = req.body;
@@ -96,9 +95,9 @@ module.exports = {
         }
     },
     async deleteKidfromParent(req, res) {
-        const parentID = req.params.idx;
-        const kidID = req.params.kidx;
         try {
+            const parentID = req.params.idx;
+            const kidID = req.params.kidx;
             await parentServices.deleteKidfromParent(parentID, kidID)
             responseFormatter.responseOK(req, res, 'deleteKidfromParent is successful!');
         } catch (err) {
