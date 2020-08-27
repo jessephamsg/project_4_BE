@@ -12,16 +12,16 @@ router.get('/parents', ensureAuth, parentControllers.getAll);
 router.get('/parents/:idx', parentControllers.getByID);
 router.post('/parents', parentControllers.createOne);
 router.put('/parents/:idx', ensureAuth, parentControllers.updateOne);
-router.put('/parents/change/:idx', ensureAuth, parentControllers.changePwd);
-router.put('/parents/add/:idx', ensureAuth, parentControllers.addKid);
-router.put('/parents/del/:idx/:kidx', ensureAuth, parentControllers.deleteKid);
+router.put('/parents/:idx/change', ensureAuth, parentControllers.changePwd);
+router.put('/parents/:idx/add', ensureAuth, parentControllers.addKid);
+router.put('/parents/:idx/del/:kidx', ensureAuth, parentControllers.deleteKid);
 router.delete('/parents/:idx', ensureAuth, parentControllers.deleteOne);
 
 router.get('/kids/:idx', kidControllers.getByID);
 router.post('/kids', kidControllers.createOne);
 router.put('/kids/:idx', kidControllers.updateOne);
-router.put('/kids/start/:idx/:gidx', kidControllers.startGame);
-router.put('/kids/stop/:idx/:gidx', kidControllers.stopGame);
+router.put('/kids/:idx/start/:gidx', kidControllers.startGame);
+router.put('/kids/:idx/stop/:gidx', kidControllers.stopGame);
 router.delete('/kids/:idx', kidControllers.deleteOne);
 
 router.get('/games/:idx', gameControllers.getByID);
