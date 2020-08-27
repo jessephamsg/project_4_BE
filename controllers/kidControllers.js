@@ -20,17 +20,17 @@ module.exports = {
                 kidName,
                 kidIcon,
                 kidMaxScreenTime,
-                isKidEmailNotified,
+                // isKidEmailNotified,
                 kidBDay,
                 kidAge
             } = req.body;
-
+            console.log('controller', req.body)
             await kidServices.createOneKid({
                 parentID,
                 kidName,
                 kidIcon,
                 kidMaxScreenTime,
-                isKidEmailNotified,
+                // isKidEmailNotified,
                 kidBDay,
                 kidAge
             })

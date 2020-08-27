@@ -1,5 +1,6 @@
 const Kids = require('../models/Kids');
 const errUtils = require('./utils/error');
+const parentRepositories = require('./parentRepositories')
 
 module.exports = {
     async getByFilter(filter) {
@@ -19,10 +20,21 @@ module.exports = {
         }
     },
     async createOneKid(newKid) {
-        console.log(newKid);
+        console.log('line22', newKid);
         try {
             const result = await Kids.create(newKid);
+            console.log('line26', result)
+            const parentID = newKid.parentID
+            const kidData = {
+                kidID : result._id,
+                kidName : result.kidName,
+                kidIcon : result.kidIcon
+            }
+            const addToParent = await parentRepositories.addKidtoParent(parentID,kidData)
+            // need to append new kid id to parent kid list
+            console.log(addToParent)
             return result;
+            
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('createOneKid', err));
         }
