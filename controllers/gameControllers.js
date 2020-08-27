@@ -14,25 +14,25 @@ module.exports = {
     async createOne(req, res) {
         try {
             const {
-                Name,
-                Category,
-                Desc,
-                Developer,
-                Status,
-                AvgRating,
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
                 parentID,
                 reviewRating,
                 reviewDesc,
             } = req.body;
 
             await gameServices.createOne({
-                Name,
-                Category,
-                Desc,
-                Developer,
-                Status,
-                AvgRating,
-                Reviews: {
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
+                reviews: {
                     parentID,
                     reviewRating,
                     reviewDesc,
@@ -47,25 +47,25 @@ module.exports = {
         try {
             const gameID = req.params.idx;
             const {
-                Name,
-                Category,
-                Desc,
-                Developer,
-                Status,
-                AvgRating,
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
                 parentID,
                 reviewRating,
                 reviewDesc,
             } = req.body;
 
             await gameServices.updateOne(gameID, {
-                Name,
-                Category,
-                Desc,
-                Developer,
-                Status,
-                AvgRating,
-                Review: {
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
+                reviews: {
                     parentID,
                     reviewRating,
                     reviewDesc,
