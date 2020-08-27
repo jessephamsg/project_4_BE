@@ -7,14 +7,15 @@ const authControllers = require('../controllers/authControllers')
 const { ensureAuth } = require('../services/config/ensureAuth') // ensure there is a user session before proceeding
 
 
-router.get('/', parentControllers.getAllParents);
-router.get('/parents', ensureAuth, parentControllers.getAllParents);
-router.get('/parents/:idx', parentControllers.getParentByID);
-router.post('/parents', parentControllers.createOneParent);
-router.put('/parents/:idx', ensureAuth, parentControllers.updateOneParent);
-router.put('/parents/change/:idx', ensureAuth, parentControllers.changePwdOneParent);
-router.put('/parents/add/:idx', ensureAuth, parentControllers.addKidtoParent);
-router.put('/parents/del/:idx/:kidx', ensureAuth, parentControllers.deleteKidfromParent);
+router.get('/', parentControllers.getAll);
+router.get('/parents', ensureAuth, parentControllers.getAll);
+router.get('/parents/:idx', parentControllers.getByID);
+router.post('/parents', parentControllers.createOne);
+router.put('/parents/:idx', ensureAuth, parentControllers.updateOne);
+router.put('/parents/change/:idx', ensureAuth, parentControllers.changePwd);
+router.put('/parents/add/:idx', ensureAuth, parentControllers.addKid);
+router.put('/parents/del/:idx/:kidx', ensureAuth, parentControllers.deleteKid);
+router.delete('/parents/:idx', ensureAuth, parentControllers.deleteOne);
 
 router.get('/kids/:idx', kidControllers.getKidByID);
 router.post('/kids', kidControllers.createOneKid);

@@ -1,32 +1,36 @@
 const parentRepositories = require('../repositories/parentRepositories');
 
 module.exports = {
-    async getAllParents() {
-        const allParents = await parentRepositories.getAllParents();
+    async getAll() {
+        const allParents = await parentRepositories.getAll();
         return allParents;
     },
-    async getParentByID(parentID) {
-        const parent = await parentRepositories.getParentByID(parentID);
+    async getByID(parentID) {
+        const parent = await parentRepositories.getByID(parentID);
         return parent;
     },
-    async getParentByUsername(username) {
-        const parent = await parentRepositories.getParentByUsername(username)
+    async getByName(username) {
+        const parent = await parentRepositories.getByName(username)
         return parent;
     },
-    async createOneParent(newParent) {
-        const parent = await parentRepositories.createOneParent(newParent);
+    async createOne(newParent) {
+        const parent = await parentRepositories.createOne(newParent);
         return parent;
     },
-    async updateOneParent(parentID, parentData) { //used by the email and the password controller
-        const parent = await parentRepositories.updateOneParent(parentID, parentData);
+    async updateOne(parentID, parentData) { //used by the email and the password controller
+        const parent = await parentRepositories.updateOne(parentID, parentData);
         return parent;
     },
-    async addKidtoParent(parentID, kidData) {
-        const parent = await parentRepositories.addKidtoParent(parentID, kidData);
+    async deleteOne(parentID) {
+        const parent = await parentRepositories.deleteOne(parentID);
         return parent;
     },
-    async deleteKidfromParent(parentID, kidID) {
-        const parent = await parentRepositories.deleteKidfromParent(parentID, kidID);
+    async addKid(parentID, kidData) {
+        const parent = await parentRepositories.addKid(parentID, kidData);
+        return parent;
+    },
+    async deleteKid(parentID, kidID) {
+        const parent = await parentRepositories.deleteKid(parentID, kidID);
         return parent;
     },
 }
