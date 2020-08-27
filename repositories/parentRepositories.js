@@ -72,9 +72,6 @@ module.exports = {
         }
     },
     async deleteKid(parentID, kidID) {
-        
-        console.log("parentID@deleteKid@parentREpositories", parentID);
-        console.log("kidID@deleteKid@parentREpositories", kidID);
         try {
             const result = await Parents.updateOne({ _id: parentID }, {
                 "$pull": { "kidsList": { "kidID": kidID } }
