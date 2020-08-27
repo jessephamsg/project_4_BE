@@ -1,6 +1,6 @@
 const kidServices = require('../services/kidServices');
-const gameHistoryServices = require('../services/gameHistoryServices');
-const gameStatisticServices = require('../services/gameStatisticServices');
+// const gameHistoryServices = require('../services/gameHistoryServices');
+// const gameStatisticServices = require('../services/gameStatisticServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
@@ -69,7 +69,6 @@ module.exports = {
             const kidID = req.params.idx;
             const gameID = req.params.gidx;
             const {
-                gameID,
                 gameName,
                 gameLevel,
                 timeStartPlay,

@@ -33,7 +33,7 @@ const KidsSchema = new Schema(
       _id: false,
       gameID: { type: String, required: true },
       gameName: { type: String, required: true },
-      gameHistory: { array: string }
+      gameHistory: { array: String }
     }]
   },
   {
