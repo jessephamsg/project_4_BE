@@ -1,7 +1,5 @@
 const kidServices = require('../services/kidServices');
 const parentServices = require('../services/parentServices');
-// const gameHistoryServices = require('../services/gameHistoryServices');
-// const gameStatisticServices = require('../services/gameStatisticServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
@@ -65,46 +63,6 @@ module.exports = {
                 age
             })
             responseFormatter.responseOK(req, res, 'One Kid successfully updated!');
-        } catch (err) {
-            responseFormatter.responseErr(req, res, err);
-        }
-    },
-    async startGame(req, res) {
-        try {
-            const kidID = req.params.idx;
-            const gameID = req.params.gidx;
-            const {
-                gameName,
-                gameLevel,
-                timeStartPlay,
-            } = req.body;
-
-            await kidServices.startGame(kidID, {
-                gameID,
-                gameName,
-                gameLevel,
-                timeStartPlay,
-            })
-            responseFormatter.responseOK(req, res, 'startGame successfully added!');
-        } catch (err) {
-            responseFormatter.responseErr(req, res, err);
-        }
-    },
-    async stopGame(req, res) {
-        try {
-            const kidID = req.params.idx;
-            const gameID = req.params.gidx;
-            const {
-                timeStopPlay,
-                currentScore
-            } = req.body;
-
-            await kidServices.stopGame(kidID, {
-                gameID,
-                timeStopPlay,
-                currentScore
-            })
-            responseFormatter.responseOK(req, res, 'stopGame successfully updated!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }

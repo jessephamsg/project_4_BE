@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const parentControllers = require('../controllers/parentControllers');
 const kidControllers = require('../controllers/kidControllers');
+const gameHistoryControllers = require('../controllers/gameHistoryControllers');
 const gameControllers = require('../controllers/gameControllers');
 const authControllers = require('../controllers/authControllers')
 const { ensureAuth } = require('../services/config/ensureAuth') // ensure there is a user session before proceeding
@@ -20,9 +21,9 @@ router.delete('/parents/:idx', ensureAuth, parentControllers.deleteOne);
 router.get('/kids/:idx', kidControllers.getByID);
 router.post('/kids', kidControllers.createOne);
 router.put('/kids/:idx', kidControllers.updateOne);
-router.put('/kids/:idx/start/:gidx', kidControllers.startGame);
-router.put('/kids/:idx/stop/:gidx', kidControllers.stopGame);
 router.delete('/kids/:idx', kidControllers.deleteOne);
+router.post('/kids/:idx/start/:gidx', gameHistoryControllers.createOne); //startGame
+router.put('/kids/:idx/stop/:gidx', gameHistoryControllers.updateOne); //stopGame
 
 router.get('/games/:idx', gameControllers.getByID);
 router.post('/games', ensureAuth, gameControllers.createOne);

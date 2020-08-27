@@ -17,5 +17,5 @@ const GameHistorySchema = new Schema(
   }
 );
 
-const GameHistory = mongoose.model('gameHistory', GameHistorySchema)
+const GameHistory = mongoose.model('gamehistories', GameHistorySchema)
 module.exports = GameHistory;

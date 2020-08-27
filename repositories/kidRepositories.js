@@ -22,7 +22,7 @@ module.exports = {
         try {
             const result = await Kids.create(newKid);
             return result;
-            
+
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
@@ -37,65 +37,22 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('updateOne', err));
         }
     },
-    async startGame(kidID, gameStartData) {
+    async addGameHistory(kidID, gameHistoryData) {
         try {
-            const result = await Kids.findByIdAndUpdate(kidID, {
-                $push: { gameHistory: gameStartData }
-            });
-            return result;
-        } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('startGame', err));
-        }
-    },
-    async stopGame(kidID, gameStopData) {
-        try {
+            const gameID = gameHistoryData.gameID;
+            const gameHistoryID = gameHistoryData.gameHistoryID;
             const result = await Kids.findOneAndUpdate({
                 "_id": kidID,
-                "gameHistory.gameID": gameStopData.gameID
+                "gamesPlayed.gameID": gameHistoryData.gameID
             }, {
-                $set: {
-                    "gameHistory.$.timeStopPlay": gameStopData.timeStopPlay,
-                    "gameHistory.$.currentScore": gameStopData.currentScore
-                }
+                $push: {
+                    "gameStat.gameHistoryID" : gameHistoryData.gameHistoryID,
+                    }
             });
+            console.log("result@addGameHistory@kidRepo: ", result)
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('stopGame', err));
-        }
-    },
-    async kidAddStatFirstPlayAtStop(kidID, gameStopData) {
-        try {
-            const result = await Kids.findByIdAndUpdate(kidID, {
-                $push: { 
-                    "gameStat.gameID" : gameStopData.gameID,
-                    "gameStat.gameName" : gameStopData.gameName,
-                    "gameStat.gameDetail.gameLevel" : gameStopData.gameLevel,
-                    "gameStat.gameDetail.timesPlayed" : gameStopData.timesPlayed,
-                    "gameStat.gameDetail.totalMinsPlayed" : gameStopData.totalMinsPlayed,
-                    "gameStat.gameDetail.highestScore" : gameStopData.highestScore,
-                }
-            });
-            return result;
-        } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('kidAddStatFirstPlayAtStop', err));
-        }
-    },
-    async kidUpdateStatAtStop(kidID, gameStopData) {
-        try {
-            const result = await Kids.findOneAndUpdate({
-                "_id": kidID,
-                "gameStat.gameID": gameStopData.gameID
-            }, {
-                $set: {
-                    "gameStat.$.gameLevel": gameStopData.gameLevel,
-                    "gameStat.$.timesPlayed": gameStopData.timesPlayed,
-                    "gameStat.$.totalMinsPlayed": gameStopData.totalMinsPlayed,
-                    "gameStat.$.highestScore": gameStopData.highestScore
-                }
-            });
-            return result;
-        } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('kidUpdateStatAtStop', err));
+            throw new Error(errUtils.buildDBErrMessage('addGameHistory', err));
         }
     },
     async deleteOne(kidID) {
