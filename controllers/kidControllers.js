@@ -5,16 +5,16 @@ const parentServices = require('../services/parentServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
-    async getKidByID(req, res) {
+    async getByID(req, res) {
         try {
             const kidID = req.params.idx;
-            const result = await kidServices.getKidByID(kidID);
+            const result = await kidServices.getByID(kidID);
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async createOneKid(req, res) {
+    async createOne(req, res) {
         try {
             const isPlaying = false;
             const {
@@ -25,7 +25,7 @@ module.exports = {
                 bDay,
                 age
             } = req.body;
-            const newKid = await kidServices.createOneKid({
+            const newKid = await kidServices.createOne({
                 parentID,
                 name,
                 icon,
@@ -44,7 +44,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async updateOneKid(req, res) {
+    async updateOne(req, res) {
         try {
             const kidID = req.params.idx;
             const {
@@ -56,7 +56,7 @@ module.exports = {
                 age
             } = req.body;
 
-            await kidServices.updateOneKid(kidID, {
+            await kidServices.updateOne(kidID, {
                 name,
                 icon,
                 maxScreenTime,
@@ -69,7 +69,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async kidStartGame(req, res) {
+    async startGame(req, res) {
         try {
             const kidID = req.params.idx;
             const gameID = req.params.gidx;
@@ -79,18 +79,18 @@ module.exports = {
                 timeStartPlay,
             } = req.body;
 
-            await kidServices.kidStartGame(kidID, {
+            await kidServices.startGame(kidID, {
                 gameID,
                 gameName,
                 gameLevel,
                 timeStartPlay,
             })
-            responseFormatter.responseOK(req, res, 'kidStartGame successfully added!');
+            responseFormatter.responseOK(req, res, 'startGame successfully added!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async kidStopGame(req, res) {
+    async stopGame(req, res) {
         try {
             const kidID = req.params.idx;
             const gameID = req.params.gidx;
@@ -99,24 +99,24 @@ module.exports = {
                 currentScore
             } = req.body;
 
-            await kidServices.kidStopGame(kidID, {
+            await kidServices.stopGame(kidID, {
                 gameID,
                 timeStopPlay,
                 currentScore
             })
-            responseFormatter.responseOK(req, res, 'kidStopGame successfully updated!');
+            responseFormatter.responseOK(req, res, 'stopGame successfully updated!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async deleteOneKid(req, res) {
+    async deleteOne(req, res) {
         try {
             const kidID = req.params.idx;
-            const kidData = await kidServices.getKidByID(kidID);
+            const kidData = await kidServices.getByID(kidID);
             const parentID = kidData.parentID;
-            await kidServices.deleteOneKid(kidID);
+            await kidServices.deleteOne(kidID);
             await parentServices.deleteKid(parentID, kidID)
-            responseFormatter.responseOK(req, res, 'deleteOneKid (from both kids and parents) is successful!');
+            responseFormatter.responseOK(req, res, 'deleteOne (from both kids and parents) is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }

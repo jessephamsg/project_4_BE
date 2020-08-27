@@ -10,44 +10,44 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getByFilter', err));
         }
     },
-    async getKidByID(KidsID) {
+    async getByID(KidsID) {
         try {
             const result = await Kids.findById(KidsID);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('getKidByID', err));
+            throw new Error(errUtils.buildDBErrMessage('getByID', err));
         }
     },
-    async createOneKid(newKid) {
+    async createOne(newKid) {
         try {
             const result = await Kids.create(newKid);
             return result;
             
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('createOneKid', err));
+            throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
     },
-    async updateOneKid(kidID, kidData) {
+    async updateOne(kidID, kidData) {
         try {
             const result = await Kids.findByIdAndUpdate(kidID, {
                 $set: kidData
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('updateOneKid', err));
+            throw new Error(errUtils.buildDBErrMessage('updateOne', err));
         }
     },
-    async kidStartGame(kidID, gameStartData) {
+    async startGame(kidID, gameStartData) {
         try {
             const result = await Kids.findByIdAndUpdate(kidID, {
                 $push: { gameHistory: gameStartData }
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('kidStartGame', err));
+            throw new Error(errUtils.buildDBErrMessage('startGame', err));
         }
     },
-    async kidStopGame(kidID, gameStopData) {
+    async stopGame(kidID, gameStopData) {
         try {
             const result = await Kids.findOneAndUpdate({
                 "_id": kidID,
@@ -60,7 +60,7 @@ module.exports = {
             });
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('kidStopGame', err));
+            throw new Error(errUtils.buildDBErrMessage('stopGame', err));
         }
     },
     async kidAddStatFirstPlayAtStop(kidID, gameStopData) {
@@ -98,12 +98,12 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('kidUpdateStatAtStop', err));
         }
     },
-    async deleteOneKid(kidID) {
+    async deleteOne(kidID) {
         try {
             const result = await Kids.findByIdAndRemove(kidID);
             return result;
         } catch (err) {
-            throw new Error(errUtils.buildDBErrMessage('deleteOneKid', err));
+            throw new Error(errUtils.buildDBErrMessage('deleteOne', err));
         }
     },
 }

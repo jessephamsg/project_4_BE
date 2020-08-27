@@ -17,12 +17,12 @@ router.put('/parents/add/:idx', ensureAuth, parentControllers.addKid);
 router.put('/parents/del/:idx/:kidx', ensureAuth, parentControllers.deleteKid);
 router.delete('/parents/:idx', ensureAuth, parentControllers.deleteOne);
 
-router.get('/kids/:idx', kidControllers.getKidByID);
-router.post('/kids', kidControllers.createOneKid);
-router.put('/kids/:idx', kidControllers.updateOneKid);
-router.put('/kids/start/:idx/:gidx', kidControllers.kidStartGame);
-router.put('/kids/stop/:idx/:gidx', kidControllers.kidStopGame);
-router.delete('/kids/:idx', kidControllers.deleteOneKid);
+router.get('/kids/:idx', kidControllers.getByID);
+router.post('/kids', kidControllers.createOne);
+router.put('/kids/:idx', kidControllers.updateOne);
+router.put('/kids/start/:idx/:gidx', kidControllers.startGame);
+router.put('/kids/stop/:idx/:gidx', kidControllers.stopGame);
+router.delete('/kids/:idx', kidControllers.deleteOne);
 
 router.get('/games/:idx', gameControllers.getByID);
 router.post('/games', ensureAuth, gameControllers.createOne);
