@@ -1,29 +1,24 @@
 const kidRepositories = require('../repositories/kidRepositories');
 
 module.exports = {
-    async getKidByID(kidID) {
-        const kid = await kidRepositories.getKidByID(kidID);
+    async getByID(kidID) {
+        const kid = await kidRepositories.getByID(kidID);
         return kid;
     },
-    async createOneKid(newKid) {
-        console.log('service', newKid)
-        const kid = await kidRepositories.createOneKid(newKid);
+    async createOne(newKid) {
+        const kid = await kidRepositories.createOne(newKid);
         return kid;
     },
-    async updateOneKid(kidID, kidData) {
-        const kid = await kidRepositories.updateOneKid(kidID, kidData);
+    async updateOne(kidID, kidData) {
+        const kid = await kidRepositories.updateOne(kidID, kidData);
         return kid;
     },
-    async kidStartGame(kidID, gameStartData) {
-        const kid = await kidRepositories.kidStartGame(kidID, gameStartData);
+    async addGameHistory(kidID, gameHistoryData) {
+        const kid = await kidRepositories.addGameHistory(kidID, gameHistoryData);
         return kid;
     },
-    async kidStopGame(kidID, gameStopData) {
-        const kid = await kidRepositories.kidStopGame(kidID, gameStopData);
-        return kid;
-    },
-    async deleteOneKid(kidID) {
-        const kid = await kidRepositories.deleteOneKid(kidID);
+    async deleteOne(kidID) {
+        const kid = await kidRepositories.deleteOne(kidID);
         return kid;
     },
 }

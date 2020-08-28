@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ParentsSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
       required: true
     },
@@ -16,9 +16,7 @@ const ParentsSchema = new Schema(
     },
     kidsList: [{
       _id: false,
-      kidID: { type: String, required: true },
-      kidIcon : { type: String, required: true },
-      kidName : { type: String, required: true }
+      kidID: { type: String, required: true }
     }],
   },
   {

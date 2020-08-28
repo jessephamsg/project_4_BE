@@ -2,58 +2,40 @@ const gameServices = require('../services/gameServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
 module.exports = {
-    async getGameByID(req, res) {
-        const gameID = req.params.idx;
-        const result = await gameServices.getGameByID(gameID);
+    async getByID(req, res) {
         try {
+            const gameID = req.params.idx;
+            const result = await gameServices.getByID(gameID);
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async createOneGame(req, res) {
+    async createOne(req, res) {
         try {
             const {
-                GameName,
-                GameIcon,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
                 parentID,
                 reviewRating,
                 reviewDesc,
-                levelNum,
-                levelDifficulty,
-                levelDesc,
-                isLevelTimed,
-                levelDurationInSecond,
-                levelHighestPossibleScore,
-                levelConfiguration
             } = req.body;
 
-            await gameServices.createOneGame({
-                GameName,
-                GameIcon,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
-                GamesReview: {
+            await gameServices.createOne({
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
+                reviews: {
                     parentID,
                     reviewRating,
                     reviewDesc,
-                },
-                GameSettings: {
-                    levelNum,
-                    levelDifficulty,
-                    levelDesc,
-                    isLevelTimed,
-                    levelDurationInSecond,
-                    levelHighestPossibleScore,
-                    levelConfiguration,
                 },
             })
             responseFormatter.responseOK(req, res, 'One Game successfully added!');
@@ -61,50 +43,32 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async updateOneGame(req, res) {
-        const gameID = req.params.idx;
+    async updateOne(req, res) {
         try {
+            const gameID = req.params.idx;
             const {
-                GameName,
-                GameIcon,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
                 parentID,
                 reviewRating,
                 reviewDesc,
-                levelNum,
-                levelDifficulty,
-                levelDesc,
-                isLevelTimed,
-                levelDurationInSecond,
-                levelHighestPossibleScore,
-                levelConfiguration
             } = req.body;
 
-            await gameServices.updateOneGame(gameID, {
-                GameName,
-                GameIcon,
-                GameCategory,
-                GameDesc,
-                GameDeveloper,
-                GameStatus,
-                GameAvgRating,
-                GamesReview: {
+            await gameServices.updateOne(gameID, {
+                name,
+                category,
+                desc,
+                developer,
+                status,
+                avgRating,
+                reviews: {
                     parentID,
                     reviewRating,
                     reviewDesc,
-                },
-                GameSettings: {
-                    levelNum,
-                    levelDifficulty,
-                    levelDesc,
-                    isLevelTimed,
-                    levelDurationInSecond,
-                    levelHighestPossibleScore,
-                    levelConfiguration,
                 },
             })
             responseFormatter.responseOK(req, res, 'One Game successfully updated!');
@@ -112,11 +76,11 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async deleteOneGame(req, res) {
-        const gameID = req.params.idx;
+    async deleteOne(req, res) {
         try {
-            await gameServices.deleteOneGame(gameID)
-            responseFormatter.responseOK(req, res, 'deleteOneGame is successful!');
+            const gameID = req.params.idx;
+            await gameServices.deleteOne(gameID)
+            responseFormatter.responseOK(req, res, 'deleteOne is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }

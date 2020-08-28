@@ -1,20 +1,20 @@
 const gameRepositories = require('../repositories/gameRepositories');
 
 module.exports = {
-    async getGameByID(gameID) {
-        const game = await gameRepositories.getGameByID(gameID);
+    async getByID(gameID) {
+        const game = await gameRepositories.getByID(gameID);
         return game;
     },
-    async createOneGame(newGame) {
-        const game = await gameRepositories.createOneGame(newGame);
+    async createOne(newGame) {
+        const game = await gameRepositories.createOne(newGame);
         return game;
     },
-    async updateOneGame(gameID, gameData) {
-        const game = await gameRepositories.updateOneGame(gameID, gameData);
+    async updateOne(gameID, gameData) {
+        const game = await gameRepositories.updateOne(gameID, gameData);
         return game;
     },
-    async deleteOneGame(gameID) {
-        const game = await gameRepositories.deleteOneGame(gameID);
+    async deleteOne(gameID) {
+        const game = await gameRepositories.deleteOne(gameID);
         return game;
     },
 }
