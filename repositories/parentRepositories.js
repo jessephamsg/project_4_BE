@@ -27,6 +27,7 @@ module.exports = {
         }
     },
     async getParentByUsername(username) {
+        console.log(username , "parentRepo line 30")
         try {
             const result = await Parents.findOne({ username: username });
             if (!result) {
