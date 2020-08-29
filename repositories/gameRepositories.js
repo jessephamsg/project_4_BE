@@ -1,7 +1,9 @@
 const Games = require('../models/Games');
 const errUtils = require('./utils/error');
 
+
 module.exports = {
+
     async getByFilter(filter) {
         try {
             const results = await Games.find(filter);
@@ -10,6 +12,7 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getByFilter', err));
         }
     },
+
     async getByID(GamesID) {
         try {
             const result = await Games.findById(GamesID);
@@ -18,6 +21,7 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getByID', err));
         }
     },
+
     async createOne(newGame) {
         try {
             const result = await Games.create(newGame);
@@ -26,6 +30,7 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
     },
+
     async updateOne(gameID, gameData) {
         try {
             const result = await Games.findByIdAndUpdate(gameID, {
@@ -36,6 +41,7 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('updateOne', err));
         }
     },
+
     async deleteOne(gameID) {
         try {
             const result = await Games.findByIdAndRemove(gameID);
@@ -44,4 +50,5 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('deleteOne', err));
         }
     },
+
 }

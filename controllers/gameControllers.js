@@ -1,6 +1,7 @@
 const gameServices = require('../services/gameServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
+
 module.exports = {
     async getByID(req, res) {
         try {
@@ -11,6 +12,17 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
+    async getByName (req, res) {
+        try {
+            const gameName = req.params.gameName;
+            const result = await gameServices.getByName(gameName);
+            responseFormatter.responseOK(req, res, result);
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+
     async createOne(req, res) {
         try {
             const {
@@ -43,6 +55,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async updateOne(req, res) {
         try {
             const gameID = req.params.idx;
@@ -76,6 +89,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async deleteOne(req, res) {
         try {
             const gameID = req.params.idx;
@@ -85,4 +99,5 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     }
+
 }

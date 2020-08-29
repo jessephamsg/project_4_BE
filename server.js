@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 4000;
+const cors = require('cors');
 const router = require('./routes/routes');
 const bodyParser = require('body-parser');
 const db = require('./db');
@@ -13,12 +14,9 @@ const frontEndUrl = process.env.Front_End_URL || 'http://localhost:3000'
 
 
 // Middlewares
-
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
 
 // auth middleware
 app.use(flash())
@@ -37,7 +35,6 @@ app.use(session ({
 initializePassport(passport)
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // Routes
 app.use(router);
