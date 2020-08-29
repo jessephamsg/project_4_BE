@@ -18,6 +18,15 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getByID', err));
         }
     },
+    async getAllByParentID(parentID) {
+        try {
+            const result = await this.getByFilter({parentID : parentID})
+            console.log('result', result.length)
+            return result;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('getAllByParentID', err))
+        }
+    },
     async createOne(newKid) {
         try {
             const result = await Kids.create(newKid);

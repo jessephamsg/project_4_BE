@@ -19,6 +19,7 @@ router.put('/parents/:idx/del/:kidx', ensureAuth, parentControllers.deleteKid);
 router.delete('/parents/:idx', ensureAuth, parentControllers.deleteOne);
 
 router.get('/kids/:idx', kidControllers.getByID);
+router.get('/kids/all/:parentidx', kidControllers.getAllChildByParentID)
 router.post('/kids', kidControllers.createOne);
 router.put('/kids/:idx', kidControllers.updateOne);
 router.delete('/kids/:idx', kidControllers.deleteOne);
