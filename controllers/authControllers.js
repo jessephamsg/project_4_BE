@@ -12,14 +12,14 @@ module.exports = {
             else {
                 req.login(user, (err) => {
                     if(err) throw err;
-                    const {_id, parentName} = req.user
+                    const {_id, name} = req.user
                     console.log('line16', req.user)
                     // res.cookie('name', parentName, { // setting cookies
                     //     expires : new Date(Date.now() + 12 * 360000), // cookies expires after 12 hours
                     //     secure: true,
                     //     sameSite: 'none'
                     //   })
-                    res.status(200).send({isAuthenticated : true, currentUser:{_id,parentName}})
+                    res.status(200).send({isAuthenticated : true, currentUser:{_id,name}})
                 })
             }
         })(req,res,next);
@@ -28,7 +28,7 @@ module.exports = {
         try {
             const id = req.body.id
             const result = await parentServices.getByID(id)
-            console.log(result.parentName)
+            console.log(result.name)
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);

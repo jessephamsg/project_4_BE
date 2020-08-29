@@ -1,4 +1,5 @@
 const kidRepositories = require('../repositories/kidRepositories');
+const { getAllByParentID } = require('../controllers/kidControllers');
 
 module.exports = {
     async getByID(kidID) {
@@ -21,4 +22,10 @@ module.exports = {
         const kid = await kidRepositories.deleteOne(kidID);
         return kid;
     },
+    async getAllByParentID(parentID) {
+        console.log('kidsservices')
+        const arrayKids = await kidRepositories.getAllByParentID(parentID)
+        console.log('kids service', arrayKids.length)
+        return arrayKids
+    }
 }

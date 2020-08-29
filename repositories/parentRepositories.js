@@ -26,9 +26,10 @@ module.exports = {
             throw new Error(errUtils.buildDBErrMessage('getByID', err));
         }
     },
-    async getByName(username) {
+    async getByName(name) {
+        console.log(name , "parentRepo line 30")
         try {
-            const result = await Parents.findOne({ parentName: username });
+            const result = await Parents.findOne({ name: name });
             if (!result) {
                 throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
             }

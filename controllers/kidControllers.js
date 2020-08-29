@@ -78,5 +78,16 @@ module.exports = {
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
+    },
+    async getAllChildByParentID (req, res) {
+        try {
+            const parentID = req.params.parentidx;
+            console.log('kid controller',parentID)
+            const arrayKids = await kidServices.getAllByParentID(parentID);
+            console.log('kidsController',arrayKids)
+            responseFormatter.responseOK(req,res, arrayKids)
+        } catch(err) {
+            responseFormatter.responseErr(req,res,err)
+        }
     }
 }
