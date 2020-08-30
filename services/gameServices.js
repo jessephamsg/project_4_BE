@@ -9,9 +9,7 @@ module.exports = {
     },
 
     async getByName(gameName) {
-        console.log('services 12', gameName);
         const game = await gameRepositories.getByFilter({name: gameName});
-        console.log('services 14', game);
         return game;
     },
 

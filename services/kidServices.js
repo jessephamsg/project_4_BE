@@ -29,9 +29,7 @@ module.exports = {
     },
 
     async getAllByParentID(parentID) {
-        console.log('kidsservices')
         const arrayKids = await kidRepositories.getAllByParentID(parentID)
-        console.log('kids service', arrayKids.length)
         return arrayKids
     }
 
