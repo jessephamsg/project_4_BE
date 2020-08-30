@@ -2,7 +2,9 @@ const kidServices = require('../services/kidServices');
 const parentServices = require('../services/parentServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
+
 module.exports = {
+
     async getByID(req, res) {
         try {
             const kidID = req.params.idx;
@@ -12,6 +14,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async createOne(req, res) {
         try {
             const isPlaying = false;
@@ -42,6 +45,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async updateOne(req, res) {
         try {
             const kidID = req.params.idx;
@@ -67,6 +71,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async deleteOne(req, res) {
         try {
             const kidID = req.params.idx;
@@ -79,15 +84,17 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
-    async getAllChildByParentID (req, res) {
+
+    async getAllChildByParentID(req, res) {
         try {
             const parentID = req.params.parentidx;
-            console.log('kid controller',parentID)
+            console.log('kid controller', parentID)
             const arrayKids = await kidServices.getAllByParentID(parentID);
-            console.log('kidsController',arrayKids)
-            responseFormatter.responseOK(req,res, arrayKids)
-        } catch(err) {
-            responseFormatter.responseErr(req,res,err)
+            console.log('kidsController', arrayKids)
+            responseFormatter.responseOK(req, res, arrayKids)
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err)
         }
     }
+
 }

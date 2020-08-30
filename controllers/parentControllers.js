@@ -2,7 +2,9 @@ const parentServices = require('../services/parentServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 const bcrypt = require('bcrypt')
 
+
 module.exports = {
+
     async getAll(req, res) {
         try {
             const results = await parentServices.getAll();
@@ -11,6 +13,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async getByID(req, res) {
         try {
             const parentID = req.params.idx;
@@ -20,6 +23,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async getByName(req, res) {
         try {
             const parentUsername = req.body.username;
@@ -29,6 +33,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async createOne(req, res) {
         try {
             const {
@@ -36,17 +41,17 @@ module.exports = {
                 email,
                 password
             } = req.body;
-            const hashedPassword = await bcrypt.hash(password, 10); // hashed the password
             await parentServices.createOne({
                 name,
                 email,
-                password: hashedPassword,
+                password,
             })
             responseFormatter.responseOK(req, res, 'createOne is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async updateOne(req, res) {
         try {
             const parentID = req.params.idx;
@@ -64,6 +69,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async deleteOne(req, res) {
         try {
             const parentID = req.params.idx;
@@ -73,28 +79,28 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async changePwd(req, res) {
         try {
             const parentID = req.params.idx;
             const {
                 password,
             } = req.body;
-            const hashedPassword = await bcrypt.hash(password, 10); // hashed the password
             await parentServices.updateOne(parentID, {
-                password: hashedPassword,
+                password,
             })
             responseFormatter.responseOK(req, res, 'changePwd is successful!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async addKid(req, res) {
         try {
             const parentID = req.params.idx;
             const {
                 kidID,
             } = req.body;
-
             await parentServices.addKid(parentID, {
                 kidID,
             })
@@ -103,6 +109,7 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     },
+
     async deleteKid(req, res) {
         try {
             const parentID = req.params.idx;
@@ -113,4 +120,5 @@ module.exports = {
             responseFormatter.responseErr(req, res, err);
         }
     }
+
 }

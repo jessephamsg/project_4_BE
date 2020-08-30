@@ -1,8 +1,11 @@
 module.exports = {
-    buildDBErrMessage (methodName, err) {
+
+    buildDBErrMessage(methodName, err) {
         return `Database Error: cannot ${methodName} due to ${err.message}`
     },
-    buildAuthRepoErrMsg (methodName, err) {
+
+    buildAuthRepoErrMsg(methodName, err) {
         return `Auth Error: cannot ${methodName} due to ${err.message}`
     },
+
 }
