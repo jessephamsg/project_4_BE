@@ -36,9 +36,7 @@ module.exports = {
                 age
             })
             const kidID = newKid._id;
-            await parentServices.addKid(parentID, {
-                kidID,
-            })
+            await parentServices.addKid(parentID, kidID)
 
             responseFormatter.responseOK(req, res, 'One Kid successfully added (to both kids and parents)!');
         } catch (err) {
@@ -88,9 +86,7 @@ module.exports = {
     async getAllChildByParentID(req, res) {
         try {
             const parentID = req.params.parentidx;
-            console.log('kid controller', parentID)
             const arrayKids = await kidServices.getAllByParentID(parentID);
-            console.log('kidsController', arrayKids)
             responseFormatter.responseOK(req, res, arrayKids)
         } catch (err) {
             responseFormatter.responseErr(req, res, err)

@@ -17,6 +17,8 @@ const ParentsSchema = new Schema({
   kidsList: [{
     type: String,
   }],
+},{
+  timestamps: true
 });
 
 
