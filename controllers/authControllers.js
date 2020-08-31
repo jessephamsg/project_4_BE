@@ -18,7 +18,6 @@ module.exports = {
                             _id,
                             name
                         } = req.user
-                        console.log('line16', req.user)
                         res.status(200).send({
                             isAuthenticated: true,
                             currentUser: {

@@ -27,7 +27,6 @@ module.exports = {
             const result = await this.getByFilter({
                 parentID: parentID
             })
-            console.log('result', result.length)
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('getAllByParentID', err))

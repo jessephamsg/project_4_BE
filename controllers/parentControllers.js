@@ -111,6 +111,7 @@ module.exports = {
     },
 
     async deleteKid(req, res) {
+        console.log('parent controller',req.params)
         try {
             const parentID = req.params.idx;
             const kidID = req.params.kidx;
