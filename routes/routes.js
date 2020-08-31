@@ -45,6 +45,6 @@ router.post('/login', authControllers.login); // logging in with user input with
 router.post('/isAuthenticated', authControllers.isAuthenticated) // get parent data from id stored in localstorage
 router.get('/user', authControllers.getUser)
 router.get('/logout', authControllers.logout);
-
+router.post('/checkPassword/:id',authControllers.checkPassword)
 
 module.exports = router;
