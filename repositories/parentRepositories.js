@@ -32,12 +32,10 @@ module.exports = {
     },
 
     async getByName(username) {
-        console.log(username, "parentRepo line 30")
         try {
             const result = await Parents.findOne({
                 name: username
             })
-            console.log(result)
             if (!result) {
                 throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
             }
@@ -94,10 +92,11 @@ module.exports = {
             }, {
                 "$pull": {
                     "kidsList": {
-                        "kidID": kidID
+                         $in : [kidID]
                     }
                 }
             });
+            console.log('parent repo del :',result.ok)
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('deleteKid', err));
