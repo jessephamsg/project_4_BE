@@ -1,6 +1,8 @@
 const passport = require("passport")
 const parentServices = require('../services/parentServices')
 const responseFormatter = require('../services/shared/responseFormatter');
+const authServices = require("../services/authServices");
+const checkAuthService = require("../services/checkAuthService");
 
 
 module.exports = {
@@ -50,5 +52,18 @@ module.exports = {
         req.logout();
         responseFormatter.responseOK(req, res, 'user logged out');
     },
+    async checkPassword(req,res) {
+        const passwordTocheck = req.body.password
+        const parentId = req.params.id
+        console.log('authcontroller', passwordTocheck +' ' + parentId)
+        console.log('password to check', passwordTocheck)
+        try {
+            const result = await checkAuthService.checkPassword(passwordTocheck,parentId)
+            console.log(result)
+            responseFormatter.responseOK(req, res, result)
+        } catch(err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    }
 
 }

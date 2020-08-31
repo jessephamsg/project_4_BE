@@ -1,6 +1,6 @@
 const LocalStrategy = require("passport-local").Strategy;
 const parentRepositories = require('../repositories/parentRepositories');
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 
 
 module.exports = function (passport) {
