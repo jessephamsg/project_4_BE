@@ -15,6 +15,17 @@ module.exports = {
         }
     },
 
+    async getOneByNameAndParentID (req, res) {
+        try {
+            const parentID = req.query.parent;
+            const kidName = req.params.kidName;
+            const result = await kidServices.getOneByNameAndParentID(parentID, kidName);
+            responseFormatter.responseOK(req, res, result);
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+
     async createOne(req, res) {
         try {
             const isPlaying = false;

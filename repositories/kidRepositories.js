@@ -84,6 +84,19 @@ module.exports = {
         }
     },
 
+    async updateKidScore (kidName, parentID, index, updatedScore) {
+        try {
+            const kidObj = await Kids.findOne({
+                name: kidName,
+                parentID,
+            })
+            kidObj.gamesStats[index].totalScore = updatedScore;
+            const updated = await kidObj.save();
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('updateKidScore', err));
+        }
+    },
+
     async deleteOne(kidID) {
         try {
             const result = await Kids.findByIdAndRemove(kidID);

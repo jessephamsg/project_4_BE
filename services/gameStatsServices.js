@@ -19,11 +19,21 @@ module.exports = {
     },
 
     async updateOne(parentID, kidName, gameID, level, gameStatsData) {
+        console.log(gameStatsData);
         const kidObjectArr = await kidRepositories.getByFilter({parentID, name: kidName});
         const kidID = kidObjectArr[0]._id;
-        const gameIDObj = kidObjectArr[0].gamesStats.filter(gameObj => gameObj.gameID == gameID);
-        const gameStatsID = gameIDObj[0].gameStatsIDs[level];
+        let gameIndex = 0;
+        let gameIDObj = null;
+        for (let i = 0; i < kidObjectArr[0].gamesStats.length; i++) {
+            if(kidObjectArr[0].gamesStats[i].gameID == gameID) {
+                gameIndex = i;
+                gameIDObj = kidObjectArr[0].gamesStats[i];
+            }
+        }
+        //const gameIDObj = kidObjectArr[0].gamesStats.filter(gameObj => gameObj.gameID == gameID);
+        const gameStatsID = gameIDObj.gameStatsIDs[level];
         const updatedGameStats = await gameStatsRepositories.updateOne(gameStatsID, gameStatsData);
+        const updatedKidStats = await kidRepositories.updateKidScore(kidName, parentID, gameIndex, gameStatsData.score)
         return updatedGameStats;
     },
 

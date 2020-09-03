@@ -8,6 +8,11 @@ module.exports = {
         return kid;
     },
 
+    async getOneByNameAndParentID (parentID, kidName) {
+        const kid = await kidRepositories.getByFilter({parentID, name: kidName});
+        return kid
+    },
+
     async createOne(newKid) {
         const kid = await kidRepositories.createOne(newKid);
         return kid;
