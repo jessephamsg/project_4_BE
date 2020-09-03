@@ -21,6 +21,7 @@ router.delete('/parents/:idx', ensureAuth, parentControllers.deleteOne);
 
 
 //REQUIRING KIDSCONTROLLERS
+router.get('/kids/:kidName', kidControllers.getOneByNameAndParentID);
 router.get('/kids/:idx', kidControllers.getByID);
 router.get('/kids/all/:parentidx', kidControllers.getAllChildByParentID)
 router.post('/kids', kidControllers.createOne);
@@ -29,8 +30,8 @@ router.delete('/kids/:idx', kidControllers.deleteOne);
 
 
 //REQUIRING GAMETSTATSCONTROLLERS
-router.post('/kids/:idx/game/:gidx', gameStatsControllers.createOne); 
-router.put('/kids/:idx/game/:gidx', gameStatsControllers.updateOne); 
+router.post('/kids/:kidName/game/:gidx', gameStatsControllers.createOne); 
+router.put('/kids/:kidName/game/:gidx', gameStatsControllers.updateOne); 
 
 
 //REQUIRING GAMECONTROLLERS

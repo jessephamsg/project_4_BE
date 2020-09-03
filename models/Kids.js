@@ -30,16 +30,11 @@ const KidsSchema = new Schema({
     required: true
   },
   gamesStats: [{
-    _id: false,
     gameID: {
       type: String,
       required: true
     },
     startTime: {
-      type: String,
-      required: true
-    },
-    pauseTime: {
       type: String,
       required: true
     },
