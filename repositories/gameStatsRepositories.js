@@ -31,12 +31,11 @@ module.exports = {
         }
     },
 
-    async updateOne(gameID, level, gameStatsData) {
+    async updateOne(gameStatsID, gameStatsData) {
         const {startTime, endTime, score, attemptsBeforeSuccess, numberOfPauses} = gameStatsData;
         try {
             const result = await GameStats.findOneAndUpdate({
-                gameID,
-                level
+                _id: gameStatsID,
             }, {
                 $set: {
                     attemptsBeforeSuccess,

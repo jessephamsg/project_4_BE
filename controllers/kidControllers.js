@@ -37,7 +37,6 @@ module.exports = {
             })
             const kidID = newKid._id;
             await parentServices.addKid(parentID, kidID)
-
             responseFormatter.responseOK(req, res, 'One Kid successfully added (to both kids and parents)!');
         } catch (err) {
             responseFormatter.responseErr(req, res, err);

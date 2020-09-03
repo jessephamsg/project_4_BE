@@ -7,6 +7,7 @@ module.exports = {
     async getByFilter(filter) {
         try {
             const results = await Kids.find(filter);
+            console.log(results)
             return results;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('getByFilter', err));
@@ -37,7 +38,6 @@ module.exports = {
         try {
             const result = await Kids.create(newKid);
             return result;
-
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
@@ -54,22 +54,33 @@ module.exports = {
         }
     },
 
-    async addGameHistory(kidID, gameHistoryData) {
+    async addGameStats(kidID, gameStatsObj) {
         try {
-            const gameID = gameHistoryData.gameID;
-            const gameHistoryID = gameHistoryData.gameHistoryID;
             const result = await Kids.findOneAndUpdate({
-                "_id": kidID,
-                "gamesPlayed.gameID": gameHistoryData.gameID
+                _id: kidID,
             }, {
                 $push: {
-                    "gameStat.gameHistoryID": gameHistoryData.gameHistoryID,
+                    'gamesStats': gameStatsObj,
                 }
             });
-            console.log("result@addGameHistory@kidRepo: ", result)
             return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('addGameHistory', err));
+        }
+    },
+
+    async updateGameStats (kidName, parentID, gameStatsIDArr) {
+        try {
+            await Kids.findByIdAndUpdate({
+                name: kidName,
+                parentID
+            }, {
+                $set: {
+                    'gamesStats.gameStatsIDs': gameStatsIDArr
+                }
+            })
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('updateGameStats', err));
         }
     },
 

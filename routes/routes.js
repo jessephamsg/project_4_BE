@@ -29,8 +29,8 @@ router.delete('/kids/:idx', kidControllers.deleteOne);
 
 
 //REQUIRING GAMETSTATSCONTROLLERS
-router.post('/kids/:idx/game/:gidx', gameStatsControllers.createOne); 
-router.put('/kids/:idx/game/:gidx', gameStatsControllers.updateOne); 
+router.post('/kids/:kidName/game/:gidx', gameStatsControllers.createOne); 
+router.put('/kids/:kidName/game/:gidx', gameStatsControllers.updateOne); 
 
 
 //REQUIRING GAMECONTROLLERS
