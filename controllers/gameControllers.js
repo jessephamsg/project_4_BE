@@ -36,6 +36,7 @@ module.exports = {
         try {
             const {
                 name,
+                displayName,
                 icon,
                 category,
                 desc,
@@ -49,6 +50,7 @@ module.exports = {
 
             await gameServices.createOne({
                 name,
+                displayName,
                 icon,
                 category,
                 desc,
@@ -72,6 +74,7 @@ module.exports = {
             const gameID = req.params.idx;
             const {
                 name,
+                displayName,
                 icon,
                 category,
                 desc,
@@ -85,6 +88,7 @@ module.exports = {
 
             await gameServices.updateOne(gameID, {
                 name,
+                displayName,
                 icon,
                 category,
                 desc,
