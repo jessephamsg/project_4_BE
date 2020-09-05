@@ -3,6 +3,15 @@ const responseFormatter = require('../services/shared/responseFormatter');
 
 
 module.exports = {
+    async getAll(req, res) {
+        try {
+            const results = await gameServices.getAll();
+            responseFormatter.responseOK(req, res, results);
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+    
     async getByID(req, res) {
         try {
             const gameID = req.params.idx;

@@ -3,6 +3,11 @@ const gameRepositories = require('../repositories/gameRepositories');
 
 module.exports = {
 
+    async getAll() {
+        const allGames = await gameRepositories.getAll();
+        return allGames;
+    },
+    
     async getByID(gameID) {
         const game = await gameRepositories.getByID(gameID);
         return game;

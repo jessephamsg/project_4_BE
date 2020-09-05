@@ -34,6 +34,7 @@ router.put('/kids/:idx/game/:gidx', gameStatsControllers.updateOne);
 
 
 //REQUIRING GAMECONTROLLERS
+router.get('/games', gameControllers.getAll);
 router.get('/games/:gameName', gameControllers.getByName);
 router.post('/games', ensureAuth, gameControllers.createOne);
 router.put('/games/:idx', ensureAuth, gameControllers.updateOne); 
