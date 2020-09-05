@@ -37,18 +37,44 @@ module.exports = {
                 name: username
             })
             if (!result) {
-                throw new Error(errUtils.buildDBErrMessage('username does not exist', err));
+                console.log('error')
+                return
             }
             return result
         } catch (err) {
+            err = {
+                message : 'user not found'
+            }
             throw new Error(errUtils.buildDBErrMessage('getByName', err));
         }
     },
 
-    async createOne(newParent) {
+    async getByEmail(email) {
         try {
+            const result = await Parents.findOne({
+                email: email
+            })
+            if (!result) {
+                return 
+            }
+            return result
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('getByEmail', err));
+        }
+    },
+
+    async createOne(newParent) {
+        const checkUsername = await this.getByName(newParent.name)
+        const checkEmail = await this.getByEmail(newParent.email)
+        try {
+            if (checkUsername) {
+                throw new Error ('Username already existed')
+            } else if (checkEmail) {
+                throw new Error ('email already existed')
+            }
             const result = await Parents.create(newParent);
-            return result;
+                console.log(result)
+                return result;
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('createOne', err));
         }
