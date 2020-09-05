@@ -13,6 +13,15 @@ module.exports = {
         }
     },
 
+    async getAll() {
+        try {
+            const results = await this.getByFilter({});
+            return results;
+        } catch (err) {
+            throw new Error(errUtils.buildDBErrMessage('getAll', err));
+        }
+    },
+
     async getByID(GamesID) {
         try {
             const result = await Games.findById(GamesID);
