@@ -16,15 +16,21 @@ module.exports = {
     },
 
     async createOne(req, res) {
-        const gameStatsArr = req.body;
-        const newGameStats = await gameStatsServices.createOne(gameStatsArr);
+        const [gameOverallStats, gameStatsArr] = req.body;
+        const parentID = req.query.parent;
+        const kidName = req.params.kidName;
+        const newGameStats = await gameStatsServices.createOne(kidName, parentID, gameStatsArr);
+        gameOverallStats.gameStatsIDs = [...newGameStats]
+        const updatedChildObject = await kidServices.addGameStats(kidName, parentID, gameOverallStats);
     },
 
     async updateOne(req, res) {
         const level = req.query.level;
+        const parentID = req.query.parent;
         const gameID = req.body.gameID;
+        const kidName = req.params.kidName;
         const {startTime, endTime, score, attemptsBeforeSuccess, numberOfPauses} = req.body;
-        await gameStatsServices.updateOne(gameID, level, {startTime, endTime, score, attemptsBeforeSuccess, numberOfPauses})
+        await gameStatsServices.updateOne(parentID, kidName, gameID, level, {startTime, endTime, score, attemptsBeforeSuccess, numberOfPauses})
     },
 
     async deleteOne(req, res) {

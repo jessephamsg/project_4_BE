@@ -8,6 +8,11 @@ module.exports = {
         return kid;
     },
 
+    async getOneByNameAndParentID (parentID, kidName) {
+        const kid = await kidRepositories.getByFilter({parentID, name: kidName});
+        return kid
+    },
+
     async createOne(newKid) {
         const kid = await kidRepositories.createOne(newKid);
         return kid;
@@ -18,8 +23,10 @@ module.exports = {
         return kid;
     },
 
-    async addGameHistory(kidID, gameHistoryData) {
-        const kid = await kidRepositories.addGameHistory(kidID, gameHistoryData);
+    async addGameStats(kidName, parentID, gameStatsObj) {
+        const kidObjectArr = await kidRepositories.getByFilter({parentID, name: kidName});
+        const kidID = kidObjectArr[0]._id;
+        const kid = await kidRepositories.addGameStats(kidID, gameStatsObj);
         return kid;
     },
 

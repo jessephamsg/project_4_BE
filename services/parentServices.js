@@ -41,6 +41,7 @@ module.exports = {
 
     async addKid(parentID, kidData) {
         const parent = await parentRepositories.addKid(parentID, kidData);
+        console.log('parent repo', kidData);
         return parent;
     },
 
