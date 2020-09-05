@@ -7,6 +7,10 @@ const GamesSchema = new Schema({
         type: String,
         required: true
     },
+    displayName: {
+        type: String,
+        required: true
+    },
     icon: {
         type: String,
         required: true
