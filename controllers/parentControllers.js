@@ -48,7 +48,8 @@ module.exports = {
             })
             responseFormatter.responseOK(req, res, 'createOne is successful!');
         } catch (err) {
-            responseFormatter.responseErr(req, res, err);
+            console.log('message', err.message)
+            responseFormatter.responseOKWithErr(req, res, err.message);
         }
     },
 

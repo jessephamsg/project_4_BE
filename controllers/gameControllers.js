@@ -3,6 +3,15 @@ const responseFormatter = require('../services/shared/responseFormatter');
 
 
 module.exports = {
+    async getAll(req, res) {
+        try {
+            const results = await gameServices.getAll();
+            responseFormatter.responseOK(req, res, results);
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err);
+        }
+    },
+    
     async getByID(req, res) {
         try {
             const gameID = req.params.idx;
@@ -27,6 +36,8 @@ module.exports = {
         try {
             const {
                 name,
+                displayName,
+                icon,
                 category,
                 desc,
                 developer,
@@ -39,6 +50,8 @@ module.exports = {
 
             await gameServices.createOne({
                 name,
+                displayName,
+                icon,
                 category,
                 desc,
                 developer,
@@ -61,6 +74,8 @@ module.exports = {
             const gameID = req.params.idx;
             const {
                 name,
+                displayName,
+                icon,
                 category,
                 desc,
                 developer,
@@ -73,6 +88,8 @@ module.exports = {
 
             await gameServices.updateOne(gameID, {
                 name,
+                displayName,
+                icon,
                 category,
                 desc,
                 developer,
