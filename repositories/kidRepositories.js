@@ -90,7 +90,7 @@ module.exports = {
                 name: kidName,
                 parentID,
             })
-            kidObj.gamesStats[index].totalScore = updatedScore;
+            kidObj.gamesStats[index].totalScore = kidObj.gamesStats[index].totalScore + updatedScore;
             const updated = await kidObj.save();
         } catch (err) {
             throw new Error(errUtils.buildDBErrMessage('updateKidScore', err));
