@@ -8,7 +8,6 @@ const checkAuthService = require("../services/checkAuthService");
 module.exports = {
 
     login(req, res, next) {
-        console.log('req.body', req.body)
         passport.authenticate("local",
             (err, user, info) => {
                 if (err) throw err;
@@ -36,7 +35,6 @@ module.exports = {
         try {
             const id = req.body.id
             const result = await parentServices.getByID(id)
-            console.log(result.name)
             responseFormatter.responseOK(req, res, result);
         } catch (err) {
             responseFormatter.responseErr(req, res, err);
@@ -44,7 +42,6 @@ module.exports = {
     },
 
     getUser(req, res) {
-        console.log(req.user)
         responseFormatter.responseOK(req, res, req.user);
     },
 
@@ -55,11 +52,8 @@ module.exports = {
     async checkPassword(req,res) {
         const passwordTocheck = req.body.password
         const parentId = req.params.id
-        console.log('authcontroller', passwordTocheck +' ' + parentId)
-        console.log('password to check', passwordTocheck)
         try {
             const result = await checkAuthService.checkPassword(passwordTocheck,parentId)
-            console.log(result)
             responseFormatter.responseOK(req, res, result)
         } catch(err) {
             responseFormatter.responseErr(req, res, err);
