@@ -1,5 +1,6 @@
 const kidServices = require('../services/kidServices');
 const parentServices = require('../services/parentServices');
+const gameStatsServices = require('../services/gameStatsServices');
 const responseFormatter = require('../services/shared/responseFormatter');
 
 
@@ -101,6 +102,16 @@ module.exports = {
         } catch (err) {
             responseFormatter.responseErr(req, res, err)
         }
-    }
+    },
 
+    async getChildStatsByNameAndParentID (req, res) {
+        try {
+            const parentID = req.query.parent;
+            const kidName = req.params.kidName;
+            const kidStatsArr = await gameStatsServices.getAllStatsByKid(parentID, kidName);
+            responseFormatter.responseOK(req, res, kidStatsArr)
+        } catch (err) {
+            responseFormatter.responseErr(req, res, err)
+        }
+    }
 }

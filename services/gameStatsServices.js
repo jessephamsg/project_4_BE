@@ -19,7 +19,6 @@ module.exports = {
     },
 
     async updateOne(parentID, kidName, gameID, level, gameStatsData) {
-        console.log(gameStatsData);
         const kidObjectArr = await kidRepositories.getByFilter({parentID, name: kidName});
         const kidID = kidObjectArr[0]._id;
         let gameIndex = 0;
@@ -30,7 +29,6 @@ module.exports = {
                 gameIDObj = kidObjectArr[0].gamesStats[i];
             }
         }
-        //const gameIDObj = kidObjectArr[0].gamesStats.filter(gameObj => gameObj.gameID == gameID);
         const gameStatsID = gameIDObj.gameStatsIDs[level];
         const updatedGameStats = await gameStatsRepositories.updateOne(gameStatsID, gameStatsData);
         const updatedKidStats = await kidRepositories.updateKidScore(kidName, parentID, gameIndex, gameStatsData.score)
@@ -41,5 +39,15 @@ module.exports = {
         const gameStats = await gameStatsRepositories.deleteOne(gameStatsID);
         return gameStats;
     },
+
+    async getAllStatsByKid (parentID, kidName) {
+        const kidObjectArr = await kidRepositories.getByFilter({parentID, name: kidName});
+        const kidGameStatsArr = kidObjectArr[0].gamesStats;
+        let gameStatsIDs = [];
+        for (const gameStatsObj of kidGameStatsArr) {
+            gameStatsIDs.push(gameStatsObj.gameStatsIDs)
+        }
+        return gameStatsIDs
+    }
 
 }

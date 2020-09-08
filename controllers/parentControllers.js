@@ -48,7 +48,6 @@ module.exports = {
             })
             responseFormatter.responseOK(req, res, 'createOne is successful!');
         } catch (err) {
-            console.log('message', err.message)
             responseFormatter.responseOKWithErr(req, res, err.message);
         }
     },
@@ -112,7 +111,6 @@ module.exports = {
     },
 
     async deleteKid(req, res) {
-        console.log('parent controller',req.params)
         try {
             const parentID = req.params.idx;
             const kidID = req.params.kidx;
