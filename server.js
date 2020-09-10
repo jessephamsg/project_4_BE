@@ -26,6 +26,7 @@ app.use(
       methods: 'GET, PUT, POST, DELETE'
     })
   );
+  
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", frontEndUrl);
 //     res.header("Access-Control-Allow-Credentials", "true");
