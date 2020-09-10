@@ -22,7 +22,17 @@ const whitelist = [frontEndUrl, 'http://localhost:3000']
 
 // auth middleware
 
-app.use(cors())
+// app.use(cors())
+
+app.use(
+    cors({
+      origin: [frontEndUrl, 'http://localhost:3000'],
+      credentials: true,
+      'Access-Control-Allow-Credentials': true, // trying this
+      methods: 'GET, PUT, POST, DELETE'
+    })
+  );
+  
 // app.use(
 //     cors({
 //         origin: function (origin, callback) {
@@ -43,7 +53,7 @@ app.use(cors())
 //     next();
 // });
 
-app.set('trust proxy', 1)
+// app.set('trust proxy', 1)
 app.use(session ({
     secret: process.env.SESSION_SECRET || 'secretly',
     resave : false, // should we resave session variable if nothing has changed ?
