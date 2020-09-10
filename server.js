@@ -25,7 +25,6 @@ app.use(
         methods: 'GET, PUT, POST, DELETE, OPTIONS',
     })
 )
-app.options('*',cors())
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", frontEndUrl);
