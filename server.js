@@ -19,18 +19,21 @@ app.use(express.urlencoded({ extended: true }));
 
 const whitelist = [frontEndUrl, 'http://localhost:3000']
 
+
 // auth middleware
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            if (whitelist.indexOf(origin) !== -1 || !origin) {
-                callback(null, true);
-            } else {
-                callback(new Error('Not allowed by CORS'));
-            }
-        }
-    })
-)
+
+app.use(cors())
+// app.use(
+//     cors({
+//         origin: function (origin, callback) {
+//             if (whitelist.indexOf(origin) !== -1 || !origin) {
+//                 callback(null, true);
+//             } else {
+//                 callback(new Error('Not allowed by CORS'));
+//             }
+//         }
+//     })
+// )
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", frontEndUrl);
