@@ -22,7 +22,7 @@ app.use(
     cors({
         origin: frontEndUrl,
         credentials: true,
-        methods: 'GET, PUT, POST, DELETE',
+        methods: 'GET, PUT, POST, DELETE, OPTIONS',
     })
 )
 app.options('*',cors())
