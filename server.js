@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
     cors({
-      origin: [frontEndUrl, frontEndUrl + 'games', 'http://localhost:8000'],
+      origin: [frontEndUrl + 'games', 'http://localhost:8000'],
       credentials: true,
       'Access-Control-Allow-Credentials': true, // trying this
       methods: 'GET, PUT, POST, DELETE'
