@@ -17,12 +17,18 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const whitelist = [frontEndUrl, 'http://localhost:3000']
+
 // auth middleware
 app.use(
     cors({
-        origin: [frontEndUrl,'http://localhost:3000'],
-        credentials: true,
-        methods: 'GET, PUT, POST, DELETE, OPTIONS',
+        origin: function (origin, callback) {
+            if (whitelist.indexOf(origin) !== -1 || !origin) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        }
     })
 )
 
@@ -33,6 +39,7 @@ app.use(
 //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, x-access-token, Cookie, Content-Type, access_token, Accept");
 //     next();
 // });
+
 app.set('trust proxy', 1)
 app.use(session ({
     secret: process.env.SESSION_SECRET || 'secretly',
