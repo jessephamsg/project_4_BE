@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const MONGO_SERVER = process.env.MONGO_SERVER || 'mongodb+srv://proj4:1odHcEMJjz7JVOPc@project4.ksmb1.gcp.mongodb.net/proj4?retryWrites=true&w=majority';
+// const MONGO_SERVER = process.env.MONGO_SERVER || 'mongodb+srv://proj4:1odHcEMJjz7JVOPc@project4.ksmb1.gcp.mongodb.net/proj4?retryWrites=true&w=majority';
+const MONGO_SERVER = 'mongodb+srv://proj4:1odHcEMJjz7JVOPc@project4.ksmb1.gcp.mongodb.net/proj4?retryWrites=true&w=majority'
 // const MONGO_SERVER = 'mongodb://localhost:27017/project4?readPreference=primary&appname=MongoDB%20Compass&ssl=false'
 // put mongo server in .env after finishing development
 
