@@ -9,7 +9,7 @@ const db = require('./db');
 const initializePassport = require('./services/authServices');
 const passport = require('passport');
 const session = require('express-session');
-const frontEndUrl = process.env.Front_End_URL || 'http://localhost:3000' ||
+const frontEndUrl = process.env.Front_End_URL || 'http://localhost:3000'
 
 
 // Middlewares
