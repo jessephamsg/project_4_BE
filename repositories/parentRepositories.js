@@ -116,10 +116,8 @@ module.exports = {
             const result = await Parents.updateOne({
                 _id: parentID
             }, {
-                "$pull": {
-                    "kidsList": {
-                         $in : [kidID]
-                    }
+                $pull: {
+                    kidsList: kidID
                 }
             });
             console.log('parent repo del :',result.ok)
