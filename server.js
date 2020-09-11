@@ -22,13 +22,12 @@ const whitelist = [frontEndUrl, 'http://localhost:3000']
 
 // auth middleware
 
-// app.use(cors())
+app.use(cors())
 
 app.use(
     cors({
       origin: [frontEndUrl, 'http://localhost:3000'],
-      credentials: true,
-      allowedHeaders : '*',
+      allowedHeaders : "*",
       methods: 'GET, PUT, POST, DELETE'
     })
   );
