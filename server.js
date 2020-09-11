@@ -29,7 +29,6 @@ app.use(
       origin: [frontEndUrl, 'http://localhost:3000'],
       credentials: true,
       allowedHeaders : frontEndUrl,
-      // allowedHeaders : '*',
       methods: 'GET, PUT, POST, DELETE'
     })
   );
